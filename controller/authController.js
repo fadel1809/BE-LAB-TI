@@ -1,8 +1,9 @@
 import { response } from "../utils/response.js";
-import { connection } from "../model/connection.js";
 import { StatusCodes } from "http-status-codes";
 import { comparePassword, hashPassword } from "../utils/passwordUtils.js";
 import { createJWT } from "../utils/tokenUtils.js";
+import { db } from "../model/connection.js";
+
 export const login = async (req, res) => {
   const { username, password, role } = req.body;
 
@@ -15,37 +16,34 @@ export const login = async (req, res) => {
   const query = "SELECT * FROM user WHERE username = ? AND password = ?";
 
   try {
-    await connection.execute(query, [username, password], (err, result) => {
-      if (err) {
-        return response(res, 500, "", "something wrong");
-      }
-      if (result.length == 1) {
-        const isPasswordCorrect = result.map(async (value) => {
-          return await comparePassword(password, value.password);
-        });
-        if (!isPasswordCorrect) {
-          return response(res, StatusCodes.NOT_FOUND, "", "Incorrect Password");
-        }
-        const userValue = result.map(async (value) => value);
-
-        const oneDay = 1000 * 60 * 60 * 24;
-        const token = createJWT({ userId: userValue.id, role: userValue.role });
-        res.cookie("token", token, {
-          httpOnly: true,
-          expires: new Date(Date.now() + oneDay),
-          secure: true,
-        });
-
-        return response(res, StatusCodes.OK, result, "Login Seccessful!");
-      } else {
-        return response(
-          res,
-          StatusCodes.NOT_FOUND,
-          result,
-          "User Not Found, please check your username"
-        );
-      }
+    const connection = await db.getConnection();
+    const [rows, fields] = await connection.query({
+      sql: query,
+      values: [username, password],
     });
+    if (!rows) {
+      return response(res, 500, null, "failed");
+    }
+    if (rows.length == 1) {
+      const isPasswordCorrect = rows.map(async (value) => {
+        return await comparePassword(password, value.password);
+      });
+      if (!isPasswordCorrect) {
+        return response(res, StatusCodes.NOT_FOUND, "", "Incorrect Password");
+      }
+      const userValue = rows.map(async (value) => value);
+
+      const oneDay = 1000 * 60 * 60 * 24;
+      const token = createJWT({ userId: userValue.id, role: userValue.role });
+      res.cookie("token", token, {
+        httpOnly: true,
+        expires: new Date(Date.now() + oneDay),
+        secure: true,
+      });
+      connection.release();
+
+      return response(res, StatusCodes.OK, rows, "Login Seccessful!");
+    }
   } catch (error) {
     console.error(error);
   }
