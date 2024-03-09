@@ -5,14 +5,18 @@ import cookieParser from "cookie-parser";
 import { response } from "./utils/response.js";
 import { db } from "./model/connection.js";
 import authRouter from "./routes/authRouter.js";
+import cors from "cors";
 import * as dotenv from "dotenv";
 import { authenticateUser } from "./middleware/authMiddleware.js";
 import pemeriksaanRouter from "./routes/pemeriksaanRouter.js";
+import peminjamanRouter from "./routes/peminjamanRouter.js";
+app.use(cors());
 dotenv.config();
 app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRouter);
 app.use("/api/pemeriksaan", authenticateUser, pemeriksaanRouter);
+app.use("/api/peminjaman", authenticateUser, peminjamanRouter);
 
 app.get("/", async (req, res) => {
   try {
