@@ -10,6 +10,7 @@ import * as dotenv from "dotenv";
 import { authenticateUser } from "./middleware/authMiddleware.js";
 import pemeriksaanRouter from "./routes/pemeriksaanRouter.js";
 import peminjamanRouter from "./routes/peminjamanRouter.js";
+import inventarisRouter from "./routes/inventarisRouter.js";
 app.use(cors());
 dotenv.config();
 app.use(cookieParser());
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use("/api/auth", authRouter);
 app.use("/api/pemeriksaan", authenticateUser, pemeriksaanRouter);
 app.use("/api/peminjaman", authenticateUser, peminjamanRouter);
+app.use("/api/inventaris", inventarisRouter);
 
 app.get("/", async (req, res) => {
   try {
