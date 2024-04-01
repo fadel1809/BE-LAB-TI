@@ -6,19 +6,22 @@ import { response } from "./utils/response.js";
 import { db } from "./model/connection.js";
 import authRouter from "./routes/authRouter.js";
 import cors from "cors";
+app.use(cors({ origin: true, credentials: true }));
+app.use(cookieParser());
 import * as dotenv from "dotenv";
 import { authenticateUser } from "./middleware/authMiddleware.js";
 import pemeriksaanRouter from "./routes/pemeriksaanRouter.js";
 import peminjamanRouter from "./routes/peminjamanRouter.js";
 import inventarisRouter from "./routes/inventarisRouter.js";
-app.use(cors());
+import userRouter from "./routes/userRouter.js";
+
 dotenv.config();
-app.use(cookieParser());
 app.use(express.json());
-app.use("/api/auth", authRouter);
-app.use("/api/pemeriksaan", authenticateUser, pemeriksaanRouter);
-app.use("/api/peminjaman", authenticateUser, peminjamanRouter);
-app.use("/api/inventaris", inventarisRouter);
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/pemeriksaan", authenticateUser, pemeriksaanRouter);
+app.use("/api/v1/peminjaman", authenticateUser, peminjamanRouter);
+app.use("/api/v1/inventaris", authenticateUser, inventarisRouter);
+app.use("/api/v1/user", cookieParser(), authenticateUser, userRouter);
 
 app.get("/", async (req, res) => {
   try {

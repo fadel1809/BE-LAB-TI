@@ -5,11 +5,15 @@ import { createJWT } from "../utils/tokenUtils.js";
 import { db } from "../model/connection.js";
 
 export const login = async (req, res) => {
-  const { username, password, role } = req.body;
-
+  const { username, password } = req.body;
   // Check if username and password are provided
   if (!username || !password) {
-    return response(res, 400, "", "username atau password belum diisi");
+    return response(
+      res,
+      StatusCodes.BAD_REQUEST,
+      null,
+      "Username atau password belum diisi"
+    );
   }
 
   // Check user credentials in the database
@@ -21,33 +25,41 @@ export const login = async (req, res) => {
       sql: query,
       values: [username, password],
     });
-    if (!rows) {
-      return response(res, 500, null, "failed");
-    }
-    if (rows.length == 1) {
-      const isPasswordCorrect = rows.map(async (value) => {
-        return await comparePassword(password, value.password);
-      });
-      if (!isPasswordCorrect) {
-        return response(res, StatusCodes.NOT_FOUND, "", "Incorrect Password");
-      }
-      const userValue = rows.map(async (value) => value);
 
-      const oneDay = 1000 * 60 * 60 * 24;
-      const token = createJWT({ userId: userValue.id, role: userValue.role });
-      res.cookie("token", token, {
-        httpOnly: true,
-        expires: new Date(Date.now() + oneDay),
-        secure: true,
-      });
-      connection.release();
-
-      return response(res, StatusCodes.OK, rows, "Login Seccessful!");
+    if (!rows || rows.length === 0) {
+      return response(res, StatusCodes.NOT_FOUND, null, "User tidak ditemukan");
     }
+
+    const user = rows[0];
+    // Compare the provided password with the hashed password stored in the database
+    const isPasswordCorrect = password == user.password;
+    if (!isPasswordCorrect) {
+      return response(res, StatusCodes.UNAUTHORIZED, null, "Password salah");
+    }
+
+    // If the password is correct, create a JWT token
+    const token = createJWT({ userId: user.id, role: user.role });
+
+    // Set the token as a cookie
+    res.cookie("token", token, {
+      secure: false,
+      httpOnly: true,
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
+    });
+    connection.release();
+    // Respond with success message and user data
+    return response(res, StatusCodes.OK, { user, token }, "Login berhasil");
   } catch (error) {
-    console.error(error);
+    console.error("Error during login:", error);
+    return response(
+      res,
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      null,
+      "Terjadi kesalahan saat login"
+    );
   }
 };
+
 export const logout = async (req, res) => {
   res.cookie("token", "logout", {
     httpOnly: true,

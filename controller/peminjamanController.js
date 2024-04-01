@@ -15,14 +15,14 @@ export const allPeminjamanAlat = async (req, res) => {
   }
 };
 export const createPeminjamanAlat = async (req, res) => {
-  const { id } = req.params;
+  const { idUser } = req.params;
   const dataBody = req.body;
-  const query = `INSERT INTO peminjaman_alat (id_user,nama,nidn,keperluan,jenis_barang,tanggal_pemeinjaman,tanggal_pengembalian,status) VALUES (?,?,?,?,?,?,?,?)`;
+  const query = `INSERT INTO peminjaman_alat (id_user,nama,nidn,keperluan,jenis_barang,tanggal_peminjaman,tanggal_pengembalian) VALUES (?,?,?,?,?,?,?)`;
   try {
     const connection = await db.getConnection();
 
     const [cekID] = await connection.query({
-      sql: `SELECT * FROM user WHERE id = ${id}`,
+      sql: `SELECT * FROM user WHERE id = ${idUser}`,
     });
     if (!cekID) {
       return response(res, 500, null, "failed");
@@ -31,13 +31,12 @@ export const createPeminjamanAlat = async (req, res) => {
       sql: query,
       values: [
         cekID[0].id,
-        dataBody.nama,
+        cekID[0].username,
         dataBody.nidn,
         dataBody.keperluan,
         dataBody.jenis_barang,
         dataBody.tanggal_peminjaman,
-        dataBody.tanggal_pembelian,
-        "pending",
+        dataBody.tanggal_pengembalian,
       ],
     });
     connection.release();
@@ -48,7 +47,7 @@ export const createPeminjamanAlat = async (req, res) => {
 };
 export const statusDiterimaPeminjamanAlat = async (req, res) => {
   const { id } = req.params;
-  const query = `UPDATE FROM peminjaman_alat SET status=? WHERE id=?`;
+  const query = `UPDATE peminjaman_alat SET status=? WHERE id=?`;
   try {
     const connection = await db.getConnection();
     const [cekId] = await connection.query({
@@ -72,7 +71,7 @@ export const statusDiterimaPeminjamanAlat = async (req, res) => {
 export const statusDitolakPeminjamanAlat = async (req, res) => {
   const { id } = req.params;
   const dataBody = req.body;
-  const query = `UPDATE FROM peminjaman_alat SET status=?,catatan=? WHERE id=?`;
+  const query = `UPDATE peminjaman_alat SET status=?,catatan=? WHERE id=?`;
   try {
     const connection = await db.getConnection();
     const [cekId] = await connection.query({
@@ -95,7 +94,7 @@ export const statusDitolakPeminjamanAlat = async (req, res) => {
 };
 export const statusDikembalikanPeminjamanAlat = async (req, res) => {
   const { id } = req.params;
-  const query = `UPDATE FROM peminjaman_alat SET status=? WHERE id=?`;
+  const query = `UPDATE peminjaman_alat SET status=? WHERE id=?`;
   try {
     const connection = await db.getConnection();
     const [cekId] = await connection.query({
@@ -187,14 +186,14 @@ export const allPeminjamanRuang = async (req, res) => {
   }
 };
 export const createPeminjamanRuang = async (req, res) => {
-  const { id } = req.params;
+  const { idUser } = req.params;
   const dataBody = req.body;
-  const query = `INSERT INTO peminjaman_alat (id_user,nama,nim,keperluan,ruang,lama_peminjaman,status) VALUES (?,?,?,?,?,?,?,?)`;
+  const query = `INSERT INTO peminjaman_ruang (id_user,nama,nim,keperluan,ruang,lama_peminjaman) VALUES (?,?,?,?,?,?)`;
   try {
     const connection = await db.getConnection();
 
     const [cekID] = await connection.query({
-      sql: `SELECT * FROM user WHERE id = ${id}`,
+      sql: `SELECT * FROM user WHERE id = ${idUser}`,
     });
     if (!cekID) {
       return response(res, 500, null, "failed");
@@ -203,12 +202,11 @@ export const createPeminjamanRuang = async (req, res) => {
       sql: query,
       values: [
         cekID[0].id,
-        dataBody.nama,
+        cekID[0].username,
         dataBody.nim,
         dataBody.keperluan,
         dataBody.ruang,
         dataBody.lama_peminjaman,
-        "pending",
       ],
     });
     connection.release();
@@ -220,7 +218,7 @@ export const createPeminjamanRuang = async (req, res) => {
 
 export const statusDiterimaPeminjamanRuang = async (req, res) => {
   const { id } = req.params;
-  const query = `UPDATE FROM peminjaman_ruang SET status=? WHERE id=?`;
+  const query = `UPDATE peminjaman_ruang SET status=? WHERE id=?`;
   try {
     const connection = await db.getConnection();
     const [cekId] = await connection.query({
@@ -245,7 +243,7 @@ export const statusDiterimaPeminjamanRuang = async (req, res) => {
 export const statusDitolakPeminjamanRuang = async (req, res) => {
   const { id } = req.params;
   const dataBody = req.body;
-  const query = `UPDATE FROM peminjaman_ruang SET status=?,catatan=? WHERE id=?`;
+  const query = `UPDATE peminjaman_ruang SET status=?,catatan=? WHERE id=?`;
   try {
     const connection = await db.getConnection();
     const [cekId] = await connection.query({
@@ -269,7 +267,7 @@ export const statusDitolakPeminjamanRuang = async (req, res) => {
 
 export const statusSelesaiPeminjamanRuang = async (req, res) => {
   const { id } = req.params;
-  const query = `UPDATE FROM peminjaman_ruang SET status=? WHERE id=?`;
+  const query = `UPDATE peminjaman_ruang SET status=? WHERE id=?`;
   try {
     const connection = await db.getConnection();
     const [cekId] = await connection.query({

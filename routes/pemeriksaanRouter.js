@@ -24,6 +24,9 @@ import {
   statusDiterimaPemeriksaanSoftware,
   historyPemeriksaanHardware,
   historyPemeriksaanSoftware,
+  getHasilPemeriksaanHardwareValidasiLaboran,
+  getHasilPemeriksaanSoftwareValidasiLaboran,
+  getPemeriksaanHardwareById
 } from "../controller/pemeriksaanController.js";
 const router = Router();
 
@@ -35,24 +38,27 @@ router
 
 router
   .route("/hardware/:id")
-  .get(detailPemeriksaanHardwareById)
+  .get(getPemeriksaanHardwareById)
   .put(editPemeriksaanHardware)
   .delete(deletePemeriksaanHardware);
+router.route("/hardware/detail/:id").get(detailPemeriksaanHardwareById)
 
 router
-  .route("/hardware/:id/validasi-laboran")
+  .route("/hardware/validasi-laboran/:id")
   .put(statusValidasiLaboranPemeriksaanHardware);
 router
   .route("/hardware/:id/validasi-kalab")
   .put(statusValidasiKalabPemeriksaanHardware);
 router.route("/hardware/:id/diterima").put(statusDiterimaPemeriksaanHardware);
-router.route("/hardware/:id/history").get(historyPemeriksaanHardware);
+router.route("/history/hardware").get(historyPemeriksaanHardware);
 
 router.route("/hardware/:id/detail").post(addDetailPemeriksaanHardware);
 router
   .route("/hardware/:id/detail/:idDetail")
   .put(editDetailPemeriksaanHardware)
   .delete(deleteDetailPemeriksaanHardware);
+
+  router.route("/hasil-pemeriksaan-hardware-laboran").get(getHasilPemeriksaanHardwareValidasiLaboran)
 //batas pemeriksaan hardware
 
 //pemeriksaan software
@@ -72,12 +78,17 @@ router
   .route("/software/:id/validasi-kalab")
   .put(statusValidasiKalabPemeriksaanSoftware);
 router.route("/software/:id/diterima").put(statusDiterimaPemeriksaanSoftware);
-router.route("/software/:id/history").get(historyPemeriksaanSoftware);
+router.route("/history/software").get(historyPemeriksaanSoftware);
 
 router.route("/software/:id/detail").post(addDetailPemeriksaanSoftware);
 router
   .route("/software/:id/detail/:idDetail")
   .put(editDetailPemeriksaanSoftware)
   .delete(deleteDetailPemeriksaanSoftware);
+
+  router
+    .route("/hasil-pemeriksaan-software-laboran")
+    .get(getHasilPemeriksaanSoftwareValidasiLaboran);
+
 //batas pemeriksaan software
 export default router;

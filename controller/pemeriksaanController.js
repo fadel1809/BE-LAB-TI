@@ -10,6 +10,7 @@ import {
   editDetailSoftware,
   deleteDetailHardware,
   deleteDetailSoftware,
+  editLaboratoriumHardware
 } from "../utils/pemeriksaan.js";
 
 export const allPemeriksaanHardware = async (req, res) => {
@@ -27,6 +28,22 @@ export const allPemeriksaanHardware = async (req, res) => {
     return response(res, 500, null, "Terjadi kesalahan server");
   }
 };
+export const getPemeriksaanHardwareById = async (req,res)=> {
+  const {id} = req.params
+  const query = `SELECT * FROM pemeriksaan_hardware WHERE id=?`;
+  try {
+    const connection = await db.getConnection();
+    const [rows] = await connection.query({
+      sql: query,
+      values: [id]
+    });
+    connection.release();
+    return response(res, 200, rows, "success");
+  } catch (err) {
+    console.log(err);
+    return response(res, 500, null, "Terjadi kesalahan server");
+  }
+}
 export const allPemeriksaanSoftware = async (req, res) => {
   const query = `SELECT * FROM pemeriksaan_software WHERE status_pemeriksaan = 'pengecekan' || status_pemeriksaan = 'revisi'`;
 
@@ -72,13 +89,14 @@ export const historyPemeriksaanSoftware = async (req, res) => {
     return response(res, 500, null, "Terjadi kesalahan server");
   }
 };
-// Fungsi untuk membuat pemeriksaan hardware utama
+
 export const createPemeriksaanHardware = async (req, res) => {
   const { tanggal, staff_lab, laboratorium, status_pemeriksaan } = req.body;
 
-  if (!tanggal && !staff_lab && !laboratorium && !status_pemeriksaan) {
+  if (!tanggal && !staff_lab && !laboratorium) {
     return response(res, 500, null, "Isi data terlebih dahulu!");
   }
+
   const date = new Date();
   const quarter = Math.floor((date.getMonth() + 3) / 3);
   // Membuat pemeriksaan hardware utama
@@ -95,7 +113,7 @@ export const createPemeriksaanHardware = async (req, res) => {
       tanggal,
       staff_lab,
       laboratorium,
-      status_pemeriksaan,
+      'pengecekan',
     ]);
 
     // Mendapatkan ID pemeriksaan hardware yang baru saja dibuat
@@ -192,6 +210,7 @@ export const detailPemeriksaanHardwareById = async (req, res) => {
     const [detailPemeriksaan] = await connection.query({
       sql: queryDetail,
     });
+    connection.release();
     return response(res, 200, { userCreator, detailPemeriksaan }, "success");
   } catch (error) {
     console.log(error);
@@ -229,6 +248,7 @@ export const detailPemeriksaanSoftwareById = async (req, res) => {
     const [detailPemeriksaan] = await connection.query({
       sql: queryDetail,
     });
+    connection.release()
     return response(res, 200, { userCreator, detailPemeriksaan }, "success");
   } catch (error) {
     console.log(error);
@@ -238,7 +258,7 @@ export const detailPemeriksaanSoftwareById = async (req, res) => {
 
 export const editPemeriksaanHardware = async (req, res) => {
   const { id } = req.params;
-  const { tanggal, staff_lab } = req.body;
+  const { tanggal, staff_lab, laboratorium } = req.body;
   if (!id) {
     return response(res, 404, null, "Not Found");
   }
@@ -250,11 +270,30 @@ export const editPemeriksaanHardware = async (req, res) => {
       sql: queryPemeriksaan,
     });
     if (!pemeriksaan) {
-      return response(res, 404, null, "fail");
+      return response(res, 404, null, "failed");
+    }
+    if(pemeriksaan[0].laboratorium !== laboratorium){
+      if (
+        await editLaboratoriumHardware(
+          pemeriksaan[0].id,
+          pemeriksaan[0].laboratorium,
+          laboratorium
+        )
+      ) {
+        queryEditPemeriksaan =
+          "UPDATE `pemeriksaan_hardware` SET `tanggal`=?,`staff_lab`=?,`laboratorium`=? WHERE id=?";
+        await connection.query(queryEditPemeriksaan, [tanggal, staff_lab,laboratorium, id]);
+        connection.release();
+        return response(res, 200, null, "success");
+      }else{
+        connection.release()
+        return response(res, 500, null, "failed");
+      }
     }
     queryEditPemeriksaan =
       "UPDATE `pemeriksaan_hardware` SET `tanggal`=?,`staff_lab`=? WHERE id=?";
     await connection.query(queryEditPemeriksaan, [tanggal, staff_lab, id]);
+    connection.release()
     return response(res, 200, null, "success");
   } catch (error) {
     console.log(error);
@@ -306,8 +345,10 @@ export const deletePemeriksaanHardware = async (req, res) => {
     const idPemeriksaan = pemeriksaan[0].id;
     const laboratorium = pemeriksaan[0].laboratorium;
     let queryHapusDetailPemeriksaan = "";
+    let queryHapusPemeriksaan = `DELETE FROM pemeriksaan_hardware WHERE id = ${id}`
     if (laboratorium == "FTTI1") {
       queryHapusDetailPemeriksaan = `DELETE FROM detail_pemeriksaan_hardware_ftti1 WHERE id_pemeriksaan=${idPemeriksaan}`;
+      
     } else if (laboratorium === "FTTI2") {
       queryHapusDetailPemeriksaan = `DELETE FROM detail_pemeriksaan_hardware_ftti2 WHERE id_pemeriksaan=${idPemeriksaan}`;
     } else if (laboratorium === "FTTI3") {
@@ -315,9 +356,10 @@ export const deletePemeriksaanHardware = async (req, res) => {
     } else if (laboratorium === "FTTI4") {
       queryHapusDetailPemeriksaan = `DELETE FROM detail_pemeriksaan_hardware_ftti4 WHERE id_pemeriksaan=${idPemeriksaan}`;
     }
-    const [result] = await connection.query({
+    await connection.query({
       sql: queryHapusDetailPemeriksaan,
     });
+    await connection.query({sql:queryHapusPemeriksaan})
     connection.release();
     return response(res, 200, null, "success");
   } catch (error) {
@@ -696,5 +738,37 @@ export const deleteDetailPemeriksaanSoftware = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const getHasilPemeriksaanHardwareValidasiLaboran = async (req,res) => {
+  const query = `SELECT * FROM pemeriksaan_hardware WHERE status_pemeriksaan = 'validasi_laboran' `;
+
+  try {
+    const connection = await db.getConnection();
+    const [rows] = await connection.query({
+      sql: query,
+    });
+    connection.release();
+    return response(res, 200, rows, "success");
+  } catch (err) {
+    console.log(err);
+    return response(res, 500, null, "Terjadi kesalahan server");
+  }
+}
+
+export const getHasilPemeriksaanSoftwareValidasiLaboran = async (req, res) => {
+  const query = `SELECT * FROM pemeriksaan_software WHERE status_pemeriksaan = 'validasi_laboran' `;
+
+  try {
+    const connection = await db.getConnection();
+    const [rows] = await connection.query({
+      sql: query,
+    });
+    connection.release();
+    return response(res, 200, rows, "success");
+  } catch (err) {
+    console.log(err);
+    return response(res, 500, null, "Terjadi kesalahan server");
   }
 };

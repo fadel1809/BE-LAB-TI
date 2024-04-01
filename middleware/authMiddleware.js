@@ -1,13 +1,13 @@
 import { verifyJWT } from "../utils/tokenUtils.js";
 import { response } from "../utils/response.js";
 import { StatusCodes } from "http-status-codes";
+import { db } from "../model/connection.js";
 export const authenticateUser = async (req, res, next) => {
-  const { token } = req.cookies;
-  if (!token) {
-    return response(res, StatusCodes.UNAUTHORIZED, null, "Unautenticated");
+  if (!req.cookies.token) {
+    return response(res, StatusCodes.UNAUTHORIZED, null, "no token");
   }
   try {
-    const { userId, role } = verifyJWT(token);
+    const { userId, role } = verifyJWT(req.cookies.token);
     req.user = { userId, role };
     next();
   } catch (error) {

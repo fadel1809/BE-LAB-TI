@@ -932,3 +932,35 @@ export const deleteDetailSoftware = async (
     console.log(error);
   }
 };
+
+export const editLaboratoriumHardware = async (idPemeriksaan,oldLab,newLab) => {
+  try {
+    const connection  = await db.getConnection()
+    if (oldLab === "FTTI1") {
+      let query = `DELETE FROM detail_pemeriksaan_hardware_ftti1 WHERE id_pemeriksaan = ${idPemeriksaan}`;
+      await connection.query({sql:query})
+      
+    }
+    if (oldLab === "FTTI2") {
+      let query = `DELETE FROM detail_pemeriksaan_hardware_ftti2 WHERE id_pemeriksaan = ${idPemeriksaan}`;
+      await connection.query({ sql: query });
+    }
+    if (oldLab === "FTTI3") {
+      let query = `DELETE FROM detail_pemeriksaan_hardware_ftti3 WHERE id_pemeriksaan = ${idPemeriksaan}`;
+      await connection.query({ sql: query });
+    }
+    if (oldLab === "FTTI4") {
+      let query = `DELETE FROM detail_pemeriksaan_hardware_ftti4 WHERE id_pemeriksaan = ${idPemeriksaan}`;
+      await connection.query({ sql: query });
+    }
+    if (newLab) {
+      await createDetailPemeriksaanHardware(idPemeriksaan, newLab);
+    }
+    connection.release()
+    return true
+  } catch (error) {
+    console.log(error)
+    return false
+  }
+  
+}
