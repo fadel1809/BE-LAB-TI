@@ -26,11 +26,18 @@ import {
   historyPemeriksaanSoftware,
   getHasilPemeriksaanHardwareValidasiLaboran,
   getHasilPemeriksaanSoftwareValidasiLaboran,
-  getPemeriksaanHardwareById
+  getPemeriksaanHardwareById,
+  getPemeriksaanSoftwareById,
+  statusRevisiPemeriksaanHardware,
+  statusRevisiPemeriksaanSoftware,
+  deleteHistoryPemeriksaanHardware,
+  deleteHistoryPemeriksaanSoftware,
+  getDetailPemeriksaanHardwareById,
+  getDetailPemeriksaanSoftwareById
 } from "../controller/pemeriksaanController.js";
 const router = Router();
 
-//pemeriksaan hardware
+//!!pemeriksaan hardware
 router
   .route("/hardware")
   .get(allPemeriksaanHardware)
@@ -46,43 +53,57 @@ router.route("/hardware/detail/:id").get(detailPemeriksaanHardwareById)
 router
   .route("/hardware/validasi-laboran/:id")
   .put(statusValidasiLaboranPemeriksaanHardware);
+router.route("/hardware/revisi/:id").put(statusRevisiPemeriksaanHardware)
 router
-  .route("/hardware/:id/validasi-kalab")
+  .route("/hardware/validasi-kalab/:id")
   .put(statusValidasiKalabPemeriksaanHardware);
 router.route("/hardware/:id/diterima").put(statusDiterimaPemeriksaanHardware);
 router.route("/history/hardware").get(historyPemeriksaanHardware);
+router.route("/history/hardware/:id/delete").delete(deleteHistoryPemeriksaanHardware)
 
-router.route("/hardware/:id/detail").post(addDetailPemeriksaanHardware);
+router.route("/detail-hardware/:id").post(addDetailPemeriksaanHardware);
 router
-  .route("/hardware/:id/detail/:idDetail")
+  .route("/detail-hardware/:id/detail/:idDetail")
+  .get(getDetailPemeriksaanHardwareById)
   .put(editDetailPemeriksaanHardware)
   .delete(deleteDetailPemeriksaanHardware);
+
+ 
 
   router.route("/hasil-pemeriksaan-hardware-laboran").get(getHasilPemeriksaanHardwareValidasiLaboran)
 //batas pemeriksaan hardware
 
-//pemeriksaan software
+//!!pemeriksaan software
 router
   .route("/software")
   .post(createPemeriksaanSoftware)
   .get(allPemeriksaanSoftware);
 router
   .route("/software/:id")
-  .get(detailPemeriksaanSoftwareById)
+  .get(getPemeriksaanSoftwareById)
   .put(editPemeriksaanSoftware)
   .delete(deletePemeriksaanSoftware);
 router
-  .route("/software/:id/validasi-laboran")
-  .put(statusValidasiLaboranPemeriksaanSoftware);
 router
-  .route("/software/:id/validasi-kalab")
+  .route("/software/detail/:id")
+  .get(detailPemeriksaanSoftwareById)
+
+  router.route("/software/validasi-laboran/:id")
+  .put(statusValidasiLaboranPemeriksaanSoftware);
+  router.route("/software/revisi/:id").put(statusRevisiPemeriksaanSoftware)
+router
+  .route("/software/validasi-kalab/:id")
   .put(statusValidasiKalabPemeriksaanSoftware);
 router.route("/software/:id/diterima").put(statusDiterimaPemeriksaanSoftware);
 router.route("/history/software").get(historyPemeriksaanSoftware);
-
-router.route("/software/:id/detail").post(addDetailPemeriksaanSoftware);
 router
-  .route("/software/:id/detail/:idDetail")
+  .route("/history/software/:id/delete")
+  .delete(deleteHistoryPemeriksaanSoftware);
+
+router.route("/detail-software/:id").post(addDetailPemeriksaanSoftware);
+router
+  .route("/detail-software/:id/detail/:idDetail")
+  .get(getDetailPemeriksaanSoftwareById)
   .put(editDetailPemeriksaanSoftware)
   .delete(deleteDetailPemeriksaanSoftware);
 
