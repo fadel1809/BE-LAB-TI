@@ -9,6 +9,20 @@ export const allPeminjamanAlat = async (req, res) => {
     const [result, fields] = await connection.query({
       sql: query,
     });
+    connection.release()
+    return response(res, 200, result, "success");
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getPeminjamanAlatStatusDipinjam = async (req, res) => {
+  const query = `SELECT * FROM peminjaman_alat WHERE status = 'dipinjam'`;
+  try {
+    const connection = await db.getConnection();
+    const [result, fields] = await connection.query({
+      sql: query,
+    });
+    connection.release();
     return response(res, 200, result, "success");
   } catch (error) {
     console.log(error);
@@ -41,6 +55,52 @@ export const createPeminjamanAlat = async (req, res) => {
     });
     connection.release();
     return response(res, 200, null, "success");
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const statusValidasiLaboranPeminjamanAlat = async (req,res) => {
+  const { id } = req.params;
+  const query = `UPDATE peminjaman_alat SET status=? WHERE id=?`;
+  try {
+    const connection = await db.getConnection();
+    const [cekId] = await connection.query({
+      sql: `SELECT * FROM peminjaman_alat WHERE id=?`,
+      values: id,
+    });
+    if (!cekId) {
+      return response(res, 500, null, "failed");
+    } else {
+      await connection.query({
+        sql: query,
+        values: ["validasi_laboran", cekId[0].id],
+      });
+      connection.release();
+      return response(res, 200, null, "success");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+export const statusValidasiKalabPeminjamanAlat = async (req, res) => {
+  const { id } = req.params;
+  const query = `UPDATE peminjaman_alat SET status=? WHERE id=?`;
+  try {
+    const connection = await db.getConnection();
+    const [cekId] = await connection.query({
+      sql: `SELECT * FROM peminjaman_alat WHERE id=?`,
+      values: id,
+    });
+    if (!cekId) {
+      return response(res, 500, null, "failed");
+    } else {
+      await connection.query({
+        sql: query,
+        values: ["validasi_kalab", cekId[0].id],
+      });
+      connection.release();
+      return response(res, 200, null, "success");
+    }
   } catch (error) {
     console.log(error);
   }
@@ -122,6 +182,7 @@ export const historyPeminjamanAlat = async (req, res) => {
     const [result, fields] = await connection.query({
       sql: query,
     });
+    connection.release()
     return response(res, 200, result, "success");
   } catch (error) {
     console.log(error);
@@ -172,7 +233,7 @@ export const allPeminjamanAlatById = async (req, res) => {
   }
 };
 
-//peminjaman ruang
+//!!peminjaman ruang
 export const allPeminjamanRuang = async (req, res) => {
   const query = `SELECT * FROM peminjaman_ruang WHERE status = 'pending'`;
   try {
@@ -180,15 +241,29 @@ export const allPeminjamanRuang = async (req, res) => {
     const [result, fields] = await connection.query({
       sql: query,
     });
+    connection.release()
     return response(res, 200, result, "success");
   } catch (error) {
     console.log(error);
   }
 };
+export const getPeminjamanRuangStatusDipinjam = async (req,res) => {
+  const query = `SELECT * FROM peminjaman_ruang WHERE status = 'dipinjam'`;
+  try {
+    const connection = await db.getConnection();
+    const [result, fields] = await connection.query({
+      sql: query,
+    });
+    connection.release();
+    return response(res, 200, result, "success");
+  } catch (error) {
+    console.log(error);
+  }
+}
 export const createPeminjamanRuang = async (req, res) => {
   const { idUser } = req.params;
   const dataBody = req.body;
-  const query = `INSERT INTO peminjaman_ruang (id_user,nama,nim,keperluan,ruang,lama_peminjaman) VALUES (?,?,?,?,?,?)`;
+  const query = `INSERT INTO peminjaman_ruang (id_user,nama,nim,keperluan,ruang,tanggal_peminjaman,waktu_peminjaman) VALUES (?,?,?,?,?,?)`;
   try {
     const connection = await db.getConnection();
 
@@ -206,7 +281,8 @@ export const createPeminjamanRuang = async (req, res) => {
         dataBody.nim,
         dataBody.keperluan,
         dataBody.ruang,
-        dataBody.lama_peminjaman,
+        dataBody.tanggal_peminjaman,
+        dataBody.waktu_peminjaman,
       ],
     });
     connection.release();
@@ -215,7 +291,29 @@ export const createPeminjamanRuang = async (req, res) => {
     console.log(error);
   }
 };
-
+export const statusValidasiLaboranPeminjamanRuang = async(req,res) => {
+  const { id } = req.params;
+  const query = `UPDATE peminjaman_ruang SET status=? WHERE id=?`;
+  try {
+    const connection = await db.getConnection();
+    const [cekId] = await connection.query({
+      sql: `SELECT * FROM peminjaman_ruang WHERE id=?`,
+      values: id,
+    });
+    if (!cekId) {
+      return response(res, 500, null, "failed");
+    } else {
+      await connection.query({
+        sql: query,
+        values: ["validasi_laboran", cekId[0].id],
+      });
+      connection.release();
+      return response(res, 200, null, "success");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
 export const statusDiterimaPeminjamanRuang = async (req, res) => {
   const { id } = req.params;
   const query = `UPDATE peminjaman_ruang SET status=? WHERE id=?`;
@@ -296,6 +394,7 @@ export const historyPeminjamanRuang = async (req, res) => {
     const [result, fields] = await connection.query({
       sql: query,
     });
+    connection.release()
     return response(res, 200, result, "success");
   } catch (error) {
     console.log(error);
