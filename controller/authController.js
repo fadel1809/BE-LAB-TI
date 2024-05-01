@@ -3,11 +3,11 @@ import { StatusCodes } from "http-status-codes";
 import { comparePassword, hashPassword } from "../utils/passwordUtils.js";
 import { createJWT } from "../utils/tokenUtils.js";
 import { db } from "../model/connection.js";
-
+import bcrypt from "bcryptjs"
 export const login = async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
   // Check if username and password are provided
-  if (!username || !password) {
+  if (!email || !password) {
     return response(
       res,
       StatusCodes.BAD_REQUEST,
@@ -17,38 +17,36 @@ export const login = async (req, res) => {
   }
 
   // Check user credentials in the database
-  const query = "SELECT * FROM user WHERE username = ? AND password = ?";
+  const query = "SELECT * FROM user WHERE email = ? ";
 
   try {
     const connection = await db.getConnection();
     const [rows, fields] = await connection.query({
       sql: query,
-      values: [username, password],
+      values: [email],
     });
-
-    if (!rows || rows.length === 0) {
-      return response(res, StatusCodes.NOT_FOUND, null, "User tidak ditemukan");
+    if (rows.length === 0) {
+      return response(res, StatusCodes.NOT_FOUND, null, "user not found");
+    }
+    const hashedPassword = rows[0].password;
+    const isUserValid = await bcrypt.compare(password, hashedPassword);
+   
+    if (!isUserValid) {
+      return response(res, StatusCodes.NOT_FOUND, null, "invalid credentials");
     }
 
     const user = rows[0];
-    // Compare the provided password with the hashed password stored in the database
-    const isPasswordCorrect = password == user.password;
-    if (!isPasswordCorrect) {
-      return response(res, StatusCodes.UNAUTHORIZED, null, "Password salah");
-    }
+ 
 
-    // If the password is correct, create a JWT token
     const token = createJWT({ userId: user.id, role: user.role });
 
-    // Set the token as a cookie
     res.cookie("token", token, {
       secure: false,
       httpOnly: true,
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
     });
     connection.release();
-    // Respond with success message and user data
-    return response(res, StatusCodes.OK, { user, token }, "Login berhasil");
+    return response(res, StatusCodes.OK, token, "Login berhasil");
   } catch (error) {
     console.error("Error during login:", error);
     return response(
@@ -67,3 +65,21 @@ export const logout = async (req, res) => {
   });
   return response(res, StatusCodes.OK, "", "Logged Out");
 };
+
+
+export const register = async (req,res) => {
+  const {email,username,password} = req.body
+  if(!email && !username && !password) {
+    return response(res,500,null,"failed")
+  }
+
+  try {
+    const connection = await db.getConnection()
+    const hashedPassword = await bcrypt.hash(password,10)
+    const result = await connection.query({sql:`INSERT INTO user (email,username,password) VALUES (?,?,?)`,values:[email,username,hashedPassword]})
+    connection.release()
+    return response(res,200,result,"success")
+  } catch (error) {
+    console.log(error)
+  }
+}

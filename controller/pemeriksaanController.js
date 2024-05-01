@@ -814,8 +814,10 @@ export const editDetailPemeriksaanHardware = async (req, res) => {
     if (
       await editDetailHardware(idPemeriksaan, idDetail, laboratorium, req.body)
     ) {
+      connection.release()
       return response(res, 200, null, "success");
     } else {
+      connection.release()
       return response(res, 500, null, "failed");
     }
   } catch (error) {
@@ -846,8 +848,10 @@ export const editDetailPemeriksaanSoftware = async (req, res) => {
     if (
       await editDetailSoftware(idPemeriksaan, idDetail, laboratorium, req.body)
     ) {
+      connection.release()
       return response(res, 200, null, "success");
     } else {
+      connection.release()
       return response(res, 500, null, "failed");
     }
   } catch (error) {
@@ -873,8 +877,10 @@ export const deleteDetailPemeriksaanHardware = async (req, res) => {
     const idPemeriksaan = pemeriksaan[0].id;
     const laboratorium = pemeriksaan[0].laboratorium;
     if (await deleteDetailHardware(idPemeriksaan, idDetail, laboratorium)) {
+      connection.release()
       return response(res, 200, null, "success");
     } else {
+      connection.release();
       return response(res, 500, null, "failed");
     }
   } catch (error) {
@@ -901,8 +907,12 @@ export const deleteDetailPemeriksaanSoftware = async (req, res) => {
     const idPemeriksaan = pemeriksaan[0].id;
     const laboratorium = pemeriksaan[0].laboratorium;
     if (await deleteDetailSoftware(idPemeriksaan, idDetail, laboratorium)) {
+            connection.release();
+
       return response(res, 200, null, "success");
     } else {
+            connection.release();
+
       return response(res, 500, null, "failed");
     }
   } catch (error) {
@@ -941,6 +951,36 @@ export const getHasilPemeriksaanSoftwareValidasiLaboran = async (req, res) => {
     return response(res, 500, null, "Terjadi kesalahan server");
   }
 };
+export const getHasilPemeriksaanHardwareValidasiKalab = async (req,res) => {
+    const query = `SELECT * FROM pemeriksaan_hardware WHERE status_pemeriksaan = 'validasi_kalab' `;
+
+    try {
+      const connection = await db.getConnection();
+      const [rows] = await connection.query({
+        sql: query,
+      });
+      connection.release();
+      return response(res, 200, rows, "success");
+    } catch (err) {
+      console.log(err);
+      return response(res, 500, null, "Terjadi kesalahan server");
+    }
+}
+export const getHasilPemeriksaanSoftwareValidasiKalab = async (req,res) => {
+  const query = `SELECT * FROM pemeriksaan_software WHERE status_pemeriksaan = 'validasi_kalab' `;
+
+  try {
+    const connection = await db.getConnection();
+    const [rows] = await connection.query({
+      sql: query,
+    });
+    connection.release();
+    return response(res, 200, rows, "success");
+  } catch (err) {
+    console.log(err);
+    return response(res, 500, null, "Terjadi kesalahan server");
+  }
+}
 
 export const getDetailPemeriksaanHardwareById = async (req,res) => {
   const { id, idDetail } = req.params;

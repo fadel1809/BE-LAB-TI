@@ -15,8 +15,34 @@ export const allPeminjamanAlat = async (req, res) => {
     console.log(error);
   }
 };
-export const getPeminjamanAlatStatusDipinjam = async (req, res) => {
-  const query = `SELECT * FROM peminjaman_alat WHERE status = 'dipinjam'`;
+export const getPeminjamanAlatStatusDiterima = async (req, res) => {
+  const query = `SELECT * FROM peminjaman_alat WHERE status = 'diterima'`;
+  try {
+    const connection = await db.getConnection();
+    const [result, fields] = await connection.query({
+      sql: query,
+    });
+    connection.release();
+    return response(res, 200, result, "success");
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getPeminjamanAlatStatusValidasiLaboran = async (req, res) => {
+  const query = `SELECT * FROM peminjaman_alat WHERE status = 'validasi_laboran'`;
+  try {
+    const connection = await db.getConnection();
+    const [result, fields] = await connection.query({
+      sql: query,
+    });
+    connection.release();
+    return response(res, 200, result, "success");
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getPeminjamanRuangStatusValidasiLaboran = async (req, res) => {
+  const query = `SELECT * FROM peminjaman_ruang WHERE status = 'validasi_laboran'`;
   try {
     const connection = await db.getConnection();
     const [result, fields] = await connection.query({
@@ -247,8 +273,8 @@ export const allPeminjamanRuang = async (req, res) => {
     console.log(error);
   }
 };
-export const getPeminjamanRuangStatusDipinjam = async (req,res) => {
-  const query = `SELECT * FROM peminjaman_ruang WHERE status = 'dipinjam'`;
+export const getPeminjamanRuangStatusDiterima = async (req,res) => {
+  const query = `SELECT * FROM peminjaman_ruang WHERE status = 'diterima'`;
   try {
     const connection = await db.getConnection();
     const [result, fields] = await connection.query({

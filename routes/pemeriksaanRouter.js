@@ -33,7 +33,9 @@ import {
   deleteHistoryPemeriksaanHardware,
   deleteHistoryPemeriksaanSoftware,
   getDetailPemeriksaanHardwareById,
-  getDetailPemeriksaanSoftwareById
+  getDetailPemeriksaanSoftwareById,
+  getHasilPemeriksaanHardwareValidasiKalab,
+  getHasilPemeriksaanSoftwareValidasiKalab
 } from "../controller/pemeriksaanController.js";
 const router = Router();
 
@@ -57,7 +59,7 @@ router.route("/hardware/revisi/:id").put(statusRevisiPemeriksaanHardware)
 router
   .route("/hardware/validasi-kalab/:id")
   .put(statusValidasiKalabPemeriksaanHardware);
-router.route("/hardware/:id/diterima").put(statusDiterimaPemeriksaanHardware);
+router.route("/hardware/diterima/:id").put(statusDiterimaPemeriksaanHardware);
 router.route("/history/hardware").get(historyPemeriksaanHardware);
 router.route("/history/hardware/:id/delete").delete(deleteHistoryPemeriksaanHardware)
 
@@ -68,9 +70,13 @@ router
   .put(editDetailPemeriksaanHardware)
   .delete(deleteDetailPemeriksaanHardware);
 
- 
+
 
   router.route("/hasil-pemeriksaan-hardware-laboran").get(getHasilPemeriksaanHardwareValidasiLaboran)
+    router
+      .route("/hasil-pemeriksaan-hardware-kalab")
+      .get(getHasilPemeriksaanHardwareValidasiKalab);
+
 //batas pemeriksaan hardware
 
 //!!pemeriksaan software
@@ -94,7 +100,7 @@ router
 router
   .route("/software/validasi-kalab/:id")
   .put(statusValidasiKalabPemeriksaanSoftware);
-router.route("/software/:id/diterima").put(statusDiterimaPemeriksaanSoftware);
+router.route("/software/diterima/:id").put(statusDiterimaPemeriksaanSoftware);
 router.route("/history/software").get(historyPemeriksaanSoftware);
 router
   .route("/history/software/:id/delete")
@@ -110,6 +116,8 @@ router
   router
     .route("/hasil-pemeriksaan-software-laboran")
     .get(getHasilPemeriksaanSoftwareValidasiLaboran);
-
+router
+  .route("/hasil-pemeriksaan-software-kalab")
+  .get(getHasilPemeriksaanSoftwareValidasiKalab);
 //batas pemeriksaan software
 export default router;

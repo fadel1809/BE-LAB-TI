@@ -19,14 +19,17 @@ import {
   statusValidasiKalabPeminjamanAlat,
   statusValidasiLaboranPeminjamanAlat,
   statusValidasiLaboranPeminjamanRuang,
-  getPeminjamanRuangStatusDipinjam,
-  getPeminjamanAlatStatusDipinjam
+  getPeminjamanAlatStatusDiterima,
+  getPeminjamanRuangStatusDiterima,
+  getPeminjamanAlatStatusValidasiLaboran,
+  getPeminjamanRuangStatusValidasiLaboran
 } from "../controller/peminjamanController.js";
 const router = Router();
 
 //peminjaman alat
 router.route("/alat").get(allPeminjamanAlat);
-router.route("/alat/dipinjam").get(getPeminjamanAlatStatusDipinjam)
+router.route("/alat/diterima").get(getPeminjamanAlatStatusDiterima)
+router.route("/alat/validasi-laboran").get(getPeminjamanAlatStatusValidasiLaboran)
 router.route("/alat/:idUser").post(createPeminjamanAlat);
 router.route("/alat/:idUser/all-peminjaman-alat").get(allPeminjamanAlatById);
 router.route("/alat/:id/validasi-laboran").put(statusValidasiLaboranPeminjamanAlat)
@@ -38,7 +41,10 @@ router.route("/alat/history/:id").delete(hapusHistoryPeminjamanAlat);
 
 //peminjaman ruang
 router.route("/ruang").get(allPeminjamanRuang);
-router.route("/ruang/dipinjam").get(getPeminjamanRuangStatusDipinjam)
+router.route("/ruang/diterima").get(getPeminjamanRuangStatusDiterima)
+router
+  .route("/ruang/validasi-laboran")
+  .get(getPeminjamanRuangStatusValidasiLaboran);
 router.route("/ruang/:idUser").post(createPeminjamanRuang);
 router.route("/ruang/:idUser/all-peminjaman-ruang").get(allPeminjamanRuangbyId);
 router.route("/ruang/:id/validasi-laboran").put(statusValidasiLaboranPeminjamanRuang)
@@ -48,3 +54,4 @@ router.route("/ruang/:id/selesai").put(statusSelesaiPeminjamanRuang);
 router.route("/ruang/history").get(historyPeminjamanRuang);
 router.route("/ruang/history/:id").delete(hapusHistoryPeminjamanRuang);
 export default router;
+  
