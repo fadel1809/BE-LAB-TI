@@ -239,19 +239,22 @@ export const hapusHistoryPeminjamanAlat = async (req, res) => {
 };
 export const allPeminjamanAlatById = async (req, res) => {
   const { idUser } = req.params;
-  const query = `SELECT * FROM peminjaman_alat WHERE id_user=?`;
+  const query = `SELECT id,nama,nidn,keperluan,jenis_barang,tanggal_peminjaman,tanggal_pengembalian,catatan,status FROM peminjaman_alat WHERE id_user=?`;
   try {
     const connection = await db.getConnection();
     const [cekId] = await connection.query({
       sql: `SELECT * FROM peminjaman_alat WHERE id_user=${idUser}`,
     });
     if (!cekId) {
+      connection.release();
+
       return response(res, 500, null, "failed");
     } else {
       const [result, fields] = await connection.query({
         sql: query,
         values: [idUser],
       });
+      connection.release()
       return response(res, 200, result, "success");
     }
   } catch (error) {
@@ -289,7 +292,7 @@ export const getPeminjamanRuangStatusDiterima = async (req,res) => {
 export const createPeminjamanRuang = async (req, res) => {
   const { idUser } = req.params;
   const dataBody = req.body;
-  const query = `INSERT INTO peminjaman_ruang (id_user,nama,nim,keperluan,ruang,tanggal_peminjaman,waktu_peminjaman) VALUES (?,?,?,?,?,?)`;
+  const query = `INSERT INTO peminjaman_ruang (id_user,nama,nim,keperluan,ruang,tanggal_peminjaman,jam_mulai,jam_selesai) VALUES (?,?,?,?,?,?,?,?)`;
   try {
     const connection = await db.getConnection();
 
@@ -308,7 +311,8 @@ export const createPeminjamanRuang = async (req, res) => {
         dataBody.keperluan,
         dataBody.ruang,
         dataBody.tanggal_peminjaman,
-        dataBody.waktu_peminjaman,
+        dataBody.jam_mulai,
+        dataBody.jam_selesai
       ],
     });
     connection.release();
@@ -452,22 +456,25 @@ export const hapusHistoryPeminjamanRuang = async (req, res) => {
 };
 export const allPeminjamanRuangbyId = async (req, res) => {
   const { idUser } = req.params;
-  const query = `SELECT * FROM peminjaman_ruang WHERE id_user=?`;
+  const query = `SELECT nama,nim,keperluan,ruang,tanggal_peminjaman,jam_mulai,jam_selesai,catatan,status FROM peminjaman_ruang WHERE id_user=?`;
   try {
     const connection = await db.getConnection();
     const [cekId] = await connection.query({
       sql: `SELECT * FROM peminjaman_ruang WHERE id_user=${idUser}`,
     });
     if (!cekId) {
+      connection.release()
       return response(res, 500, null, "failed");
     } else {
       const [result, fields] = await connection.query({
         sql: query,
         values: [idUser],
       });
+      connection.release()
       return response(res, 200, result, "success");
     }
   } catch (error) {
     console.log(error);
   }
 };
+

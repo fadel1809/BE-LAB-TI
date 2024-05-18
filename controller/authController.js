@@ -63,7 +63,7 @@ export const logout = async (req, res) => {
     httpOnly: true,
     expires: new Date(Date.now()),
   });
-  return response(res, StatusCodes.OK, "", "Logged Out");
+  return response(res, StatusCodes.OK, null, "Logged Out");
 };
 
 

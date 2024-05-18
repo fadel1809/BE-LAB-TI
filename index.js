@@ -15,6 +15,7 @@ import peminjamanRouter from "./routes/peminjamanRouter.js";
 import inventarisRouter from "./routes/inventarisRouter.js";
 import userRouter from "./routes/userRouter.js";
 import accountRouter from "./routes/accountRouter.js"
+import dashboardRouter from "./routes/dahsboardRouter.js"
 dotenv.config();
 app.use(express.json());
 app.use("/api/v1/auth", authRouter);
@@ -22,6 +23,7 @@ app.use("/api/v1/pemeriksaan", authenticateUser, pemeriksaanRouter);
 app.use("/api/v1/peminjaman", authenticateUser, peminjamanRouter);
 app.use("/api/v1/inventaris", authenticateUser, inventarisRouter);
 app.use("/api/v1/akun",authenticateUser, accountRouter)
+app.use("/api/v1/dashboard", authenticateUser, dashboardRouter);
 app.use("/api/v1/user", cookieParser(), authenticateUser, userRouter);
 
 app.get("/", async (req, res) => {
