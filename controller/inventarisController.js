@@ -2,6 +2,18 @@ import { db } from "../model/connection.js";
 import { response } from "../utils/response.js";
 export const allInventarisFtti1 = async (req, res) => {
   const query = `SELECT * FROM inventaris_ftti1 `;
+  const {search} = req.query
+  if(search){
+    let querySearch = `SELECT * FROM inventaris_ftti1 WHERE no_aset LIKE '%${search}%' OR jenis LIKE '%${search}%' OR spesifikasi LIKE '%${search}%' OR posisi LIKE '%${search}%' OR keterangan LIKE '%${search}%';`;
+    try {
+      const connection = await db.getConnection()
+      const [result] = await  connection.query({sql:querySearch})
+      connection.release()
+      return response(res, 200, result, "success");
+    } catch (error) {
+      return response(res,500,error,"failed")
+    }
+  }
   try {
     const connection = await db.getConnection();
     const [rows] = await connection.query({
@@ -19,6 +31,18 @@ export const allInventarisFtti1 = async (req, res) => {
 };
 export const allInventarisFtti2 = async (req, res) => {
   const query = `SELECT * FROM inventaris_ftti2 `;
+  const { search } = req.query;
+  if (search) {
+    let querySearch = `SELECT * FROM inventaris_ftti2  WHERE no_aset LIKE '%${search}%' OR jenis LIKE '%${search}%' OR spesifikasi LIKE '%${search}%' OR posisi LIKE '%${search}%' OR keterangan LIKE '%${search}%';`;
+    try {
+      const connection = await db.getConnection();
+      const [result] = await connection.query({ sql: querySearch });
+      connection.release();
+      return response(res, 200, result, "success");
+    } catch (error) {
+      return response(res, 500, error, "failed");
+    }
+  }
   try {
     const connection = await db.getConnection();
     const [rows] = await connection.query({
@@ -36,6 +60,19 @@ export const allInventarisFtti2 = async (req, res) => {
 };
 export const allInventarisFtti3 = async (req, res) => {
   const query = `SELECT * FROM inventaris_ftti3 `;
+    const { search } = req.query;
+  
+  if (search) {
+    let querySearch = `SELECT * FROM inventaris_ftti3  WHERE no_aset LIKE '%${search}%' OR jenis LIKE '%${search}%' OR spesifikasi LIKE '%${search}%' OR posisi LIKE '%${search}%' OR keterangan LIKE '%${search}%';`;
+    try {
+      const connection = await db.getConnection();
+      const [result] = await connection.query({ sql: querySearch });
+      connection.release();
+      return response(res, 200, result, "success");
+    } catch (error) {
+      return response(res, 500, error, "failed");
+    }
+  }
   try {
     const connection = await db.getConnection();
     const [rows] = await connection.query({
@@ -53,6 +90,19 @@ export const allInventarisFtti3 = async (req, res) => {
 };
 export const allInventarisFtti4 = async (req, res) => {
   const query = `SELECT * FROM inventaris_ftti4 `;
+  const { search } = req.query;
+
+  if (search) {
+    let querySearch = `SELECT * FROM inventaris_ftti4  WHERE no_aset LIKE '%${search}%' OR jenis LIKE '%${search}%' OR spesifikasi LIKE '%${search}%' OR posisi LIKE '%${search}%' OR keterangan LIKE '%${search}%';`;
+    try {
+      const connection = await db.getConnection();
+      const [result] = await connection.query({ sql: querySearch });
+      connection.release();
+      return response(res, 200, result, "success");
+    } catch (error) {
+      return response(res, 500, error, "failed");
+    }
+  }
   try {
     const connection = await db.getConnection();
     const [rows] = await connection.query({
@@ -459,3 +509,5 @@ export const hapusInventarisFtti4 = async (req, res) => {
     return response(res, 500, null, "failed");
   }
 };
+
+
