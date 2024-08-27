@@ -291,13 +291,13 @@ export const detailPemeriksaanHardwareById = async (req, res) => {
     laboratorium = userCreator[0].laboratorium;
     let idPemeriksaan = userCreator[0].id;
     if (laboratorium == "FTTI1") {
-      queryDetail = `SELECT * FROM detail_pemeriksaan_hardware_ftti1 where id_pemeriksaan=${idPemeriksaan}`;
+      queryDetail = `SELECT * FROM detail_pemeriksaan_hardware_ftti1 where id_pemeriksaan=${idPemeriksaan} ORDER BY CAST(no_pc AS UNSIGNED) ASC`;
     } else if (laboratorium == "FTTI2") {
-      queryDetail = `SELECT * FROM detail_pemeriksaan_hardware_ftti2 where id_pemeriksaan=${idPemeriksaan}`;
+      queryDetail = `SELECT * FROM detail_pemeriksaan_hardware_ftti2 where id_pemeriksaan=${idPemeriksaan} ORDER BY CAST(no_pc AS UNSIGNED) ASC`;
     } else if (laboratorium == "FTTI3") {
-      queryDetail = `SELECT * FROM detail_pemeriksaan_hardware_ftti3 where id_pemeriksaan=${idPemeriksaan}`;
+      queryDetail = `SELECT * FROM detail_pemeriksaan_hardware_ftti3 where id_pemeriksaan=${idPemeriksaan} ORDER BY CAST(no_pc AS UNSIGNED) ASC`;
     } else if (laboratorium == "FTTI4") {
-      queryDetail = `SELECT * FROM detail_pemeriksaan_hardware_ftti4 where id_pemeriksaan=${idPemeriksaan}`;
+      queryDetail = `SELECT * FROM detail_pemeriksaan_hardware_ftti4 where id_pemeriksaan=${idPemeriksaan} ORDER BY CAST(no_pc AS UNSIGNED) ASC`;
     }
     const [detailPemeriksaan] = await connection.query({
       sql: queryDetail,
@@ -329,13 +329,13 @@ export const detailPemeriksaanSoftwareById = async (req, res) => {
     laboratorium = userCreator[0].laboratorium;
     let idPemeriksaan = userCreator[0].id;
     if (laboratorium == "FTTI1") {
-      queryDetail = `SELECT * FROM detail_pemeriksaan_software_ftti1 where id_pemeriksaan=${idPemeriksaan}`;
+      queryDetail = `SELECT * FROM detail_pemeriksaan_software_ftti1 where id_pemeriksaan=${idPemeriksaan} ORDER BY CAST(no_pc AS UNSIGNED) ASC `;
     } else if (laboratorium == "FTTI2") {
-      queryDetail = `SELECT * FROM detail_pemeriksaan_software_ftti2 where id_pemeriksaan=${idPemeriksaan}`;
+      queryDetail = `SELECT * FROM detail_pemeriksaan_software_ftti2 where id_pemeriksaan=${idPemeriksaan} ORDER BY CAST(no_pc AS UNSIGNED) ASC`;
     } else if (laboratorium == "FTTI3") {
-      queryDetail = `SELECT * FROM detail_pemeriksaan_software_ftti3 where id_pemeriksaan=${idPemeriksaan}`;
+      queryDetail = `SELECT * FROM detail_pemeriksaan_software_ftti3 where id_pemeriksaan=${idPemeriksaan} ORDER BY CAST(no_pc AS UNSIGNED) ASC`;
     } else if (laboratorium == "FTTI4") {
-      queryDetail = `SELECT * FROM detail_pemeriksaan_software_ftti4 where id_pemeriksaan=${idPemeriksaan}`;
+      queryDetail = `SELECT * FROM detail_pemeriksaan_software_ftti4 where id_pemeriksaan=${idPemeriksaan} ORDER BY CAST(no_pc AS UNSIGNED) ASC`;
     }
     const [detailPemeriksaan] = await connection.query({
       sql: queryDetail,

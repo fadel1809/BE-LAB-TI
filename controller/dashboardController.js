@@ -43,25 +43,27 @@ try {
     const [inventarisFtti3] = await connection.query({ sql: queryInventarisFtti3 });
     const [inventarisFtti4] = await connection.query({ sql: queryInventarisFtti4 });
 
-    connection.release()
-    return response(res,200,{
-    validasiLaboranCount,
-    softwareValidasiLaboranCount,
-    softwarePengecekanCount,
-    pengecekanCount,
-    historyHardware,
-    historySoftware,
-    revisiHardware,
-    revisiSoftware,
-    pendingPeminjamanAlat,
-    pendingPeminjamanRuang,
-    barangDipinjam,
-    ruangDipinjam,
-    inventarisFtti1,
-    inventarisFtti2,
-    inventarisFtti3,
-    inventarisFtti4
-},"success")
+    
+    const data = {
+    validasiLaboranCount:validasiLaboranCount[0],
+    softwareValidasiLaboranCount:softwareValidasiLaboranCount[0],
+    softwarePengecekanCount:softwarePengecekanCount[0],
+    pengecekanCount:pengecekanCount[0],
+    historyHardware:historyHardware[0],
+    historySoftware:historySoftware[0],
+    revisiHardware:revisiHardware[0],
+    revisiSoftware:revisiSoftware[0],
+    pendingPeminjamanAlat:pendingPeminjamanAlat[0],
+    pendingPeminjamanRuang:pendingPeminjamanRuang[0],
+    barangDipinjam:barangDipinjam[0],
+    ruangDipinjam:ruangDipinjam[0],
+    inventarisFtti1:inventarisFtti1[0],
+    inventarisFtti2:inventarisFtti2[0],
+    inventarisFtti3:inventarisFtti3[0],
+    inventarisFtti4:inventarisFtti4[0]
+  }
+  connection.release();
+    return response(res,200,data,"success")
 } catch (error) {
     console.log(error)
 }
@@ -128,7 +130,24 @@ export const dashboardKalab = async (req,res) => {
         sql: queryJumlahAkun,
       });
       connection.release()
-      return response(res,200,{validasiKalabCount,softwareValidasiKalabCount,historyHardware,historySoftware,validasiLaboranPeminjamanAlat,validasiLaboranPeminjamanRuang,barangDipinjam,ruangDipinjam,inventarisFtti1,inventarisFtti2,inventarisFtti3,inventarisFtti4,jumlahAkun},"success")
+      console.log(validasiKalabCount[0])
+      const data = {
+        validasiKalabCount: validasiKalabCount[0],
+        softwareValidasiKalabCount:softwareValidasiKalabCount[0],
+        historyHardware:historyHardware[0],
+        historySoftware: historySoftware[0],
+        validasiLaboranPeminjamanAlat:validasiLaboranPeminjamanAlat[0],
+        validasiLaboranPeminjamanRuang:validasiLaboranPeminjamanRuang[0],
+        barangDipinjam:barangDipinjam[0],
+        ruangDipinjam:ruangDipinjam[0],
+        inventarisFtti1:inventarisFtti1[0],
+        inventarisFtti2:inventarisFtti2[0],
+        inventarisFtti3:inventarisFtti3[0],
+        inventarisFtti4:inventarisFtti4[0],
+        jumlahAkun:jumlahAkun[0],
+      };
+      console.log(data)
+      return response(res,200,data,"success")
     } catch (error) {
     console.log(error)
     }
@@ -180,22 +199,24 @@ export const dashboardAslab = async (req,res) => {
      sql: queryInventarisFtti4,
    });
    connection.release();
+   const data = {
+       pengecekanCount:pengecekanCount[0],
+       softwarePengecekanCount:softwarePengecekanCount[0],
+       historyHardware:historyHardware[0],
+       historyHardware:historySoftware[0],
+       revisiHardware:revisiHardware[0],
+       revisiSoftware:revisiSoftware[0],
+       historySoftware:historySoftware[0],
+       inventarisFtti1:inventarisFtti1[0],
+       inventarisFtti2:inventarisFtti2[0],
+       inventarisFtti3:inventarisFtti3[0],
+       inventarisFtti4:inventarisFtti4[0],
+     }
+     console.log(data)
    return response(
      res,
      200,
-     {
-       pengecekanCount,
-       softwarePengecekanCount,
-       historyHardware,
-       historyHardware,
-       revisiHardware,
-       revisiSoftware,
-       historySoftware,
-       inventarisFtti1,
-       inventarisFtti2,
-       inventarisFtti3,
-       inventarisFtti4,
-     },
+     data,
      "success"
    );
  } catch (error) {

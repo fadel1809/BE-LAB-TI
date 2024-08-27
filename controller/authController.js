@@ -72,13 +72,30 @@ export const register = async (req,res) => {
   if(!email && !username && !password) {
     return response(res,500,null,"failed")
   }
-
+  function makeid(length) {
+    let result = "";
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return `${result}`;
+  }
   try {
     const connection = await db.getConnection()
     const hashedPassword = await bcrypt.hash(password,10)
-    const result = await connection.query({sql:`INSERT INTO user (email,username,password) VALUES (?,?,?)`,values:[email,username,hashedPassword]})
+    const [result,fields] = await connection.query({sql:`INSERT INTO user (email,username,password) VALUES (?,?,?)`,values:[email,username,hashedPassword]})
+    if(result){
+      await connection.query({
+        sql: `INSERT INTO messages (user_id,room_id) VALUES (?,?)`,
+        values:[result.insertId,makeid(10)]
+      });
+    }
     connection.release()
-    return response(res,200,result,"success")
+    return response(res,201,null,"success")
   } catch (error) {
     console.log(error)
   }
