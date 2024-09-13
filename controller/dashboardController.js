@@ -146,7 +146,7 @@ export const dashboardKalab = async (req,res) => {
         inventarisFtti4:inventarisFtti4[0],
         jumlahAkun:jumlahAkun[0],
       };
-      console.log(data)
+      connection.release();
       return response(res,200,data,"success")
     } catch (error) {
     console.log(error)

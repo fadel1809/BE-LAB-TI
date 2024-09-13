@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import { comparePassword, hashPassword } from "../utils/passwordUtils.js";
 import { createJWT } from "../utils/tokenUtils.js";
 import { db } from "../model/connection.js";
+import { ulid } from "ulid";
 import bcrypt from "bcryptjs"
 export const login = async (req, res) => {
   const { email, password } = req.body;
@@ -25,6 +26,7 @@ export const login = async (req, res) => {
       sql: query,
       values: [email],
     });
+    connection.release();
     if (rows.length === 0) {
       return response(res, StatusCodes.NOT_FOUND, null, "user not found");
     }
@@ -41,11 +43,11 @@ export const login = async (req, res) => {
     const token = createJWT({ userId: user.id, role: user.role });
 
     res.cookie("token", token, {
+      sameSite:"Strict",
       secure: false,
       httpOnly: true,
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
     });
-    connection.release();
     return response(res, StatusCodes.OK, token, "Login berhasil");
   } catch (error) {
     console.error("Error during login:", error);
@@ -72,18 +74,6 @@ export const register = async (req,res) => {
   if(!email && !username && !password) {
     return response(res,500,null,"failed")
   }
-  function makeid(length) {
-    let result = "";
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    const charactersLength = characters.length;
-    let counter = 0;
-    while (counter < length) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-      counter += 1;
-    }
-    return `${result}`;
-  }
   try {
     const connection = await db.getConnection()
     const hashedPassword = await bcrypt.hash(password,10)
@@ -91,7 +81,7 @@ export const register = async (req,res) => {
     if(result){
       await connection.query({
         sql: `INSERT INTO messages (user_id,room_id) VALUES (?,?)`,
-        values:[result.insertId,makeid(10)]
+        values:[result.insertId, ulid()]
       });
     }
     connection.release()

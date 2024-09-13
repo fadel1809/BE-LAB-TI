@@ -1,8 +1,8 @@
 import { Router } from "express";
-import {getMessage,sendMessage} from "../controller/messageContoller.js"
+import {fetchAllMessage, fetchMessage} from "../controller/messageContoller.js"
 const router = Router()
 
-router.route("/message").get(getMessage).post(sendMessage);
-
+router.route("/fetch-message/:room_id").get(fetchMessage);
+router.route("/fetch-all-message").get(fetchAllMessage);
 
 export default router
