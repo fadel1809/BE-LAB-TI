@@ -28,20 +28,20 @@ export const login = async (req, res) => {
     });
     connection.release();
     if (rows.length === 0) {
-      return response(res, StatusCodes.NOT_FOUND, null, "user not found");
+      return response(res, StatusCodes.NOT_FOUND, null, "User tidak terdaftar");
     }
     const hashedPassword = rows[0].password;
     const isUserValid = await bcrypt.compare(password, hashedPassword);
-   
+    
     if (!isUserValid) {
-      return response(res, StatusCodes.NOT_FOUND, null, "invalid credentials");
+      return response(res, StatusCodes.NOT_FOUND, null, "Password salah!");
     }
-
+    
     const user = rows[0];
- 
-
+    
+    
     const token = createJWT({ userId: user.id, role: user.role });
-
+    
     res.cookie("token", token, {
       sameSite:"Strict",
       secure: false,
@@ -77,13 +77,7 @@ export const register = async (req,res) => {
   try {
     const connection = await db.getConnection()
     const hashedPassword = await bcrypt.hash(password,10)
-    const [result,fields] = await connection.query({sql:`INSERT INTO user (email,username,password) VALUES (?,?,?)`,values:[email,username,hashedPassword]})
-    if(result){
-      await connection.query({
-        sql: `INSERT INTO messages (user_id,room_id) VALUES (?,?)`,
-        values:[result.insertId, ulid()]
-      });
-    }
+    await connection.query({sql:`INSERT INTO user (email,username,password) VALUES (?,?,?)`,values:[email,username,hashedPassword]})
     connection.release()
     return response(res,201,null,"success")
   } catch (error) {

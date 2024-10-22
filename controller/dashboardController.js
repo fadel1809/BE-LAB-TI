@@ -130,7 +130,6 @@ export const dashboardKalab = async (req,res) => {
         sql: queryJumlahAkun,
       });
       connection.release()
-      console.log(validasiKalabCount[0])
       const data = {
         validasiKalabCount: validasiKalabCount[0],
         softwareValidasiKalabCount:softwareValidasiKalabCount[0],
@@ -212,7 +211,7 @@ export const dashboardAslab = async (req,res) => {
        inventarisFtti3:inventarisFtti3[0],
        inventarisFtti4:inventarisFtti4[0],
      }
-     console.log(data)
+  
    return response(
      res,
      200,
