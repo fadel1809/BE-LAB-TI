@@ -1,13 +1,10 @@
 import { response } from "../utils/response.js";
 import { StatusCodes } from "http-status-codes";
-import { comparePassword, hashPassword } from "../utils/passwordUtils.js";
 import { createJWT } from "../utils/tokenUtils.js";
 import { db } from "../model/connection.js";
-import { ulid } from "ulid";
 import bcrypt from "bcryptjs"
 export const login = async (req, res) => {
   const { email, password } = req.body;
-  // Check if username and password are provided
   if (!email || !password) {
     return response(
       res,
@@ -22,7 +19,7 @@ export const login = async (req, res) => {
 
   try {
     const connection = await db.getConnection();
-    const [rows, fields] = await connection.query({
+    const [rows] = await connection.query({
       sql: query,
       values: [email],
     });
@@ -43,10 +40,10 @@ export const login = async (req, res) => {
     const token = createJWT({ userId: user.id, role: user.role });
     
     res.cookie("token", token, {
-      sameSite:"Strict",
-      secure: false,
-      httpOnly: true,
-      expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
+      sameSite: process.env.NODE_ENV == "development" ? "Strict" : "None" ,
+      secure: process.env.NODE_ENV == "production",
+      httpOnly: process.env.NODE_ENV == "development",
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000), 
     });
     return response(res, StatusCodes.OK, token, "Login berhasil");
   } catch (error) {
@@ -62,7 +59,7 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
   res.cookie("token", "logout", {
-    httpOnly: true,
+    httpOnly: process.env.NODE_ENV == "development",
     expires: new Date(Date.now()),
   });
   return response(res, StatusCodes.OK, null, "Logged Out");

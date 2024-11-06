@@ -1,6 +1,7 @@
 import { db } from "../model/connection.js";
 import { StatusCodes } from "http-status-codes";
 import { response } from "../utils/response.js";
+import dayjs from "dayjs";
 import {
   createDetailPemeriksaanHardware,
   createDetailPemeriksaanSoftware,
@@ -13,7 +14,6 @@ import {
   editLaboratoriumHardware,
   editLaboratoriumSoftware
 } from "../utils/pemeriksaan.js";
-
 export const allPemeriksaanHardware = async (req, res) => {
   const query = `SELECT * FROM pemeriksaan_hardware WHERE status_pemeriksaan = 'pengecekan' || status_pemeriksaan = 'revisi'`;
 

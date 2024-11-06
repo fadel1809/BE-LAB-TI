@@ -5,9 +5,20 @@ import cookieParser from "cookie-parser";
 import { db } from "./model/connection.js";
 import authRouter from "./routes/authRouter.js";
 import cors from "cors";
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+import helmet from "helmet";
+app.use(helmet())
+app.use(cors({ credentials: true, origin: process.env.NODE_ENV=="development" ? process.env.LOCAL_URL : process.env.DOMAIN_URL }));
 app.use(cookieParser());
-app.options("*", cors({ credentials: true, origin: "http://localhost:5173" }));
+app.options(
+  "*",
+  cors({
+    credentials: true,
+    origin:
+      process.env.NODE_ENV == "development"
+        ? process.env.LOCAL_URL
+        : process.env.DOMAIN_URL,
+  })
+);
 
 import * as dotenv from "dotenv";
 import { authenticateUser } from "./middleware/authMiddleware.js";
