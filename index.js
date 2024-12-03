@@ -6,6 +6,8 @@ import { db } from "./model/connection.js";
 import authRouter from "./routes/authRouter.js";
 import cors from "cors";
 import helmet from "helmet";
+import path from "path";
+import { fileURLToPath } from "url";
 app.use(helmet())
 app.use(cors({ credentials: true, origin: process.env.NODE_ENV=="development" ? process.env.LOCAL_URL : process.env.DOMAIN_URL }));
 app.use(cookieParser());
@@ -29,6 +31,9 @@ import userRouter from "./routes/userRouter.js";
 import accountRouter from "./routes/accountRouter.js"
 import dashboardRouter from "./routes/dahsboardRouter.js"
 import messageRouter from "./routes/messageRouter.js";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 dotenv.config();
 app.use(express.json());
