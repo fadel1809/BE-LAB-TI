@@ -1,4 +1,4 @@
-const port = 3000;
+const port = process.env.PORT || 3000;
 import express from "express";
 const app = express();
 import cookieParser from "cookie-parser";
@@ -9,14 +9,14 @@ import helmet from "helmet";
 import path from "path";
 import { fileURLToPath } from "url";
 app.use(helmet())
-app.use(cors({ credentials: true, origin: process.env.NODE_ENV=="development" ? process.env.LOCAL_URL : process.env.DOMAIN_URL }));
+app.use(cors({ credentials: true, origin: process.env.NODE_ENV === "development" ? process.env.LOCAL_URL : process.env.DOMAIN_URL }));
 app.use(cookieParser());
 app.options(
   "*",
   cors({
     credentials: true,
     origin:
-      process.env.NODE_ENV == "development"
+      process.env.NODE_ENV === "development"
         ? process.env.LOCAL_URL
         : process.env.DOMAIN_URL,
   })

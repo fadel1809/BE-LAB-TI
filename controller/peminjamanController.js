@@ -3,12 +3,24 @@ import { response } from "../utils/response.js";
 
 // Peminjaman alat
 export const allPeminjamanAlat = async (req, res) => {
-  const query = `SELECT * FROM peminjaman_alat WHERE status = 'pending'`;
+  const { page = 1, limit = 5 } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const query = `SELECT * FROM peminjaman_alat WHERE status = 'pending' LIMIT ? OFFSET ?`;
+  const countQuery = `
+    SELECT COUNT(*) AS total 
+    FROM peminjaman_alat
+    WHERE status = 'pending'`;
   try {
     const connection = await db.getConnection();
-    const [result] = await connection.query(query);
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
+    const [rows] = await connection.query({
+      sql: query,
+      values: [parseInt(limit), parseInt(offset)]
+    });
+    const totalPages = Math.ceil(totalItems / limit);
     connection.release();
-    return response(res, 200, result, "success");
+    return response(res, 200, rows, "success",totalItems,totalPages,parseInt(page));
   } catch (error) {
     console.error(error);
     return response(res, 500, null, "Internal server error");
@@ -16,12 +28,24 @@ export const allPeminjamanAlat = async (req, res) => {
 };
 
 export const getPeminjamanAlatStatusDiterima = async (req, res) => {
-  const query = `SELECT * FROM peminjaman_alat WHERE status = 'diterima'`;
+  const { page = 1, limit = 5 } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const query = `SELECT * FROM peminjaman_alat WHERE status = 'diterima' LIMIT ? OFFSET ?`;
+  const countQuery = `
+    SELECT COUNT(*) AS total 
+    FROM peminjaman_alat
+    WHERE status = 'diterima'`;
   try {
     const connection = await db.getConnection();
-    const [result] = await connection.query(query);
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
+    const [rows] = await connection.query({
+      sql: query,
+      values: [parseInt(limit), parseInt(offset)]
+    });
+    const totalPages = Math.ceil(totalItems / limit);
     connection.release();
-    return response(res, 200, result, "success");
+    return response(res, 200, rows, "success",totalItems,totalPages,parseInt(page));
   } catch (error) {
     console.error(error);
     return response(res, 500, null, "Internal server error");
@@ -29,12 +53,24 @@ export const getPeminjamanAlatStatusDiterima = async (req, res) => {
 };
 
 export const getPeminjamanAlatStatusValidasiLaboran = async (req, res) => {
-  const query = `SELECT * FROM peminjaman_alat WHERE status = 'validasi_laboran'`;
+  const { page = 1, limit = 5 } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const query = `SELECT * FROM peminjaman_alat WHERE status = 'validasi_laboran' LIMIT ? OFFSET ?`;
+  const countQuery = `
+    SELECT COUNT(*) AS total 
+    FROM peminjaman_alat
+    WHERE status = 'validasi_laboran'`;
   try {
     const connection = await db.getConnection();
-    const [result] = await connection.query(query);
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
+    const [rows] = await connection.query({
+      sql: query,
+      values: [parseInt(limit), parseInt(offset)]
+    });
+    const totalPages = Math.ceil(totalItems / limit);
     connection.release();
-    return response(res, 200, result, "success");
+    return response(res, 200, rows, "success",totalItems,totalPages,parseInt(page));
   } catch (error) {
     console.error(error);
     return response(res, 500, null, "Internal server error");
@@ -42,12 +78,24 @@ export const getPeminjamanAlatStatusValidasiLaboran = async (req, res) => {
 };
 
 export const getPeminjamanRuangStatusValidasiLaboran = async (req, res) => {
-  const query = `SELECT * FROM peminjaman_ruang WHERE status = 'validasi_laboran'`;
+  const { page = 1, limit = 5 } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const query = `SELECT * FROM peminjaman_ruang WHERE status = 'validasi_laboran' LIMIT ? OFFSET ?`;
+  const countQuery = `
+    SELECT COUNT(*) AS total 
+    FROM peminjaman_ruang
+    WHERE status = 'validasi_laboran'`;
   try {
     const connection = await db.getConnection();
-    const [result] = await connection.query(query);
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
+    const [rows] = await connection.query({
+      sql: query,
+      values: [parseInt(limit), parseInt(offset)]
+    });
+    const totalPages = Math.ceil(totalItems / limit);
     connection.release();
-    return response(res, 200, result, "success");
+    return response(res, 200, rows, "success",totalItems,totalPages,parseInt(page));
   } catch (error) {
     console.error(error);
     return response(res, 500, null, "Internal server error");
@@ -57,7 +105,7 @@ export const getPeminjamanRuangStatusValidasiLaboran = async (req, res) => {
 export const createPeminjamanAlat = async (req, res) => {
   const { idUser } = req.params;
   const dataBody = req.body;
-  const query = `INSERT INTO peminjaman_alat (id_user,nama,nidn,keperluan,jenis_barang,tanggal_peminjaman,tanggal_pengembalian,filename) VALUES (?,?,?,?,?,?,?,?)`;
+  const query = `INSERT INTO peminjaman_alat (id_user,nama,nidn,keperluan,jenis_barang,tanggal_peminjaman,tanggal_pengembalian,jam_mulai,jam_selesai,filename) VALUES (?,?,?,?,?,?,?,?,?,?)`;
   try {
     const connection = await db.getConnection();
 
@@ -68,7 +116,6 @@ export const createPeminjamanAlat = async (req, res) => {
       connection.release();
       return response(res, 404, null, "User not found");
     }
-    console.log(req.file.filename)
     await connection.query(query, [
       cekID[0].id,
       cekID[0].username,
@@ -77,6 +124,8 @@ export const createPeminjamanAlat = async (req, res) => {
       dataBody.jenis_barang,
       dataBody.tanggal_peminjaman,
       dataBody.tanggal_pengembalian,
+      dataBody.jam_mulai,
+      dataBody.jam_selesai,
       req.file.filename
     ]);
 
@@ -182,12 +231,24 @@ export const statusDikembalikanPeminjamanAlat = async (req, res) => {
 };
 
 export const historyPeminjamanAlat = async (req, res) => {
-  const query = `SELECT * FROM peminjaman_alat WHERE status = 'dikembalikan'`;
+  const { page = 1, limit = 5 } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const query = `SELECT * FROM peminjaman_alat WHERE status = 'dikembalikan' OR status='ditolak' LIMIT ? OFFSET ?`;
+  const countQuery = `
+    SELECT COUNT(*) AS total 
+    FROM peminjaman_alat
+    WHERE status = 'dikembalikan' OR status='ditolak'`;
   try {
     const connection = await db.getConnection();
-    const [result] = await connection.query(query);
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
+    const [rows] = await connection.query({
+      sql: query,
+      values: [parseInt(limit), parseInt(offset)]
+    });
+    const totalPages = Math.ceil(totalItems / limit);
     connection.release();
-    return response(res, 200, result, "success");
+    return response(res, 200, rows, "success",totalItems,totalPages,parseInt(page));
   } catch (error) {
     console.error(error);
     return response(res, 500, null, "Internal server error");
@@ -219,8 +280,7 @@ export const hapusHistoryPeminjamanAlat = async (req, res) => {
 
 export const allPeminjamanAlatById = async (req, res) => {
   const { idUser } = req.params;
-  console.log(idUser)
-  const query = `SELECT id,nama,nidn,keperluan,jenis_barang,tanggal_peminjaman,tanggal_pengembalian,catatan,status FROM peminjaman_alat WHERE id_user=?`;
+  const query = `SELECT id,nama,nidn,keperluan,jenis_barang,tanggal_peminjaman,tanggal_pengembalian,jam_mulai,jam_selesai,catatan,status FROM peminjaman_alat WHERE id_user=?`;
   try {
     const connection = await db.getConnection();
     const [cekId] = await connection.query(
@@ -238,12 +298,24 @@ export const allPeminjamanAlatById = async (req, res) => {
 
 // Peminjaman ruang
 export const allPeminjamanRuang = async (req, res) => {
-  const query = `SELECT * FROM peminjaman_ruang WHERE status = 'pending'`;
+  const { page = 1, limit = 5 } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const query = `SELECT * FROM peminjaman_ruang WHERE status = 'pending' LIMIT ? OFFSET ?`;
+  const countQuery = `
+    SELECT COUNT(*) AS total 
+    FROM peminjaman_ruang
+    WHERE status = 'pending'`;
   try {
     const connection = await db.getConnection();
-    const [result] = await connection.query(query);
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
+    const [rows] = await connection.query({
+      sql: query,
+      values: [parseInt(limit), parseInt(offset)]
+    });
+    const totalPages = Math.ceil(totalItems / limit);
     connection.release();
-    return response(res, 200, result, "success");
+    return response(res, 200, rows, "success",totalItems,totalPages,parseInt(page));
   } catch (error) {
     console.error(error);
     return response(res, 500, null, "Internal server error");
@@ -251,12 +323,24 @@ export const allPeminjamanRuang = async (req, res) => {
 };
 
 export const getPeminjamanRuangStatusDiterima = async (req, res) => {
-  const query = `SELECT * FROM peminjaman_ruang WHERE status = 'diterima'`;
+  const { page = 1, limit = 5 } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const query = `SELECT * FROM peminjaman_ruang WHERE status = 'diterima' LIMIT ? OFFSET ?`;
+  const countQuery = `
+    SELECT COUNT(*) AS total 
+    FROM peminjaman_ruang
+    WHERE status = 'diterima'`;
   try {
     const connection = await db.getConnection();
-    const [result] = await connection.query(query);
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
+    const [rows] = await connection.query({
+      sql: query,
+      values: [parseInt(limit), parseInt(offset)]
+    });
+    const totalPages = Math.ceil(totalItems / limit);
     connection.release();
-    return response(res, 200, result, "success");
+    return response(res, 200, rows, "success",totalItems,totalPages,parseInt(page));
   } catch (error) {
     console.error(error);
     return response(res, 500, null, "Internal server error");
@@ -391,12 +475,24 @@ export const statusSelesaiPeminjamanRuang = async (req, res) => {
 };
 
 export const historyPeminjamanRuang = async (req, res) => {
-  const query = `SELECT * FROM peminjaman_ruang WHERE status = 'selesai'`;
+  const { page = 1, limit = 5 } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const query = `SELECT * FROM peminjaman_ruang WHERE status = 'selesai' OR status='ditolak' LIMIT ? OFFSET ?`;
+  const countQuery = `
+    SELECT COUNT(*) AS total 
+    FROM peminjaman_ruang
+    WHERE status = 'selesai' OR status='ditolak'`;
   try {
     const connection = await db.getConnection();
-    const [result] = await connection.query(query);
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
+    const [rows] = await connection.query({
+      sql: query,
+      values: [parseInt(limit), parseInt(offset)]
+    });
+    const totalPages = Math.ceil(totalItems / limit);
     connection.release();
-    return response(res, 200, result, "success");
+    return response(res, 200, rows, "success",totalItems,totalPages,parseInt(page));
   } catch (error) {
     console.error(error);
     return response(res, 500, null, "Internal server error");

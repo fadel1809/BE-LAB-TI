@@ -1,121 +1,167 @@
 import { db } from "../model/connection.js";
 import { response } from "../utils/response.js";
 export const allInventarisFtti1 = async (req, res) => {
-  const query = `SELECT * FROM inventaris_ftti1 `;
-  const {search} = req.query
+  const query = `SELECT * FROM inventaris_ftti1 LIMIT ? OFFSET ?`;
+
+  const { page = 1, limit = 5, params  } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const countQuery = `
+    SELECT COUNT(*) AS total 
+    FROM inventaris_ftti1`;
+  let search = false;
+  if (params && params.search) {
+    search = params.search;
+  }
   if(search){
-    let querySearch = `SELECT * FROM inventaris_ftti1 WHERE no_aset LIKE '%${search}%' OR jenis LIKE '%${search}%' OR spesifikasi LIKE '%${search}%' OR posisi LIKE '%${search}%' OR keterangan LIKE '%${search}%';`;
+    let querySearch = `SELECT * FROM inventaris_ftti1 WHERE no_aset LIKE '%${search}%' OR jenis LIKE '%${search}%' OR spesifikasi LIKE '%${search}%' OR posisi LIKE '%${search}%' OR keterangan LIKE '%${search}%' LIMIT ? OFFSET ?;`;
+    let queryCountSearch = `SELECT COUNT(*) AS total FROM inventaris_ftti1 WHERE no_aset LIKE '%${search}%' OR jenis LIKE '%${search}%' OR spesifikasi LIKE '%${search}%' OR posisi LIKE '%${search}%' OR keterangan LIKE '%${search}%';`;
+
     try {
       const connection = await db.getConnection()
-      const [result] = await  connection.query({sql:querySearch})
+      const [countRows] = await connection.query({ sql: queryCountSearch });
+      const totalItems = countRows[0].total;
+      const [result] = await  connection.query({sql:querySearch,values:[parseInt(limit),parseInt(offset)]})
+      const totalPages = Math.ceil(totalItems / limit);
       connection.release()
-      return response(res, 200, result, "success");
+      return response(res, 200, result, "success",totalItems,totalPages,parseInt(page));
     } catch (error) {
       return response(res,500,error,"failed")
     }
   }
   try {
-    const connection = await db.getConnection();
-    const [rows] = await connection.query({
-      sql: query,
-    });
-    connection.release();
-    if (!rows) {
-      return response(res, 500, null, "failed");
-    } else {
-      return response(res, 200, rows, "success");
-    }
+    const connection = await db.getConnection()
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
+    const [result] = await  connection.query({sql:query,values:[parseInt(limit),parseInt(offset)]})
+    const totalPages = Math.ceil(totalItems / limit);
+    connection.release()
+    return response(res, 200, result, "success",totalItems,totalPages,parseInt(page));
   } catch (error) {
     console.log(error);
+    return response(res,500,error,"failed")
   }
 };
 export const allInventarisFtti2 = async (req, res) => {
-  const query = `SELECT * FROM inventaris_ftti2 `;
-  const { search } = req.query;
-  if (search) {
-    let querySearch = `SELECT * FROM inventaris_ftti2  WHERE no_aset LIKE '%${search}%' OR jenis LIKE '%${search}%' OR spesifikasi LIKE '%${search}%' OR posisi LIKE '%${search}%' OR keterangan LIKE '%${search}%';`;
+  const query = `SELECT * FROM inventaris_ftti2 LIMIT ? OFFSET ?`;
+
+  const { page = 1, limit = 5, params  } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const countQuery = `
+    SELECT COUNT(*) AS total
+    FROM inventaris_ftti2`;
+  let search = false;
+  if (params && params.search) {
+    search = params.search;
+  }
+  if(search){
+    let querySearch = `SELECT * FROM inventaris_ftti2 WHERE no_aset LIKE '%${search}%' OR jenis LIKE '%${search}%' OR spesifikasi LIKE '%${search}%' OR posisi LIKE '%${search}%' OR keterangan LIKE '%${search}%' LIMIT ? OFFSET ?;`;
+    let queryCountSearch = `SELECT COUNT(*) AS total FROM inventaris_ftti2 WHERE no_aset LIKE '%${search}%' OR jenis LIKE '%${search}%' OR spesifikasi LIKE '%${search}%' OR posisi LIKE '%${search}%' OR keterangan LIKE '%${search}%';`;
+
     try {
-      const connection = await db.getConnection();
-      const [result] = await connection.query({ sql: querySearch });
-      connection.release();
-      return response(res, 200, result, "success");
+      const connection = await db.getConnection()
+      const [countRows] = await connection.query({ sql: queryCountSearch });
+      const totalItems = countRows[0].total;
+      const [result] = await  connection.query({sql:querySearch,values:[parseInt(limit),parseInt(offset)]})
+      const totalPages = Math.ceil(totalItems / limit);
+      connection.release()
+      return response(res, 200, result, "success",totalItems,totalPages,parseInt(page));
     } catch (error) {
-      return response(res, 500, error, "failed");
+      return response(res,500,error,"failed")
     }
   }
   try {
-    const connection = await db.getConnection();
-    const [rows] = await connection.query({
-      sql: query,
-    });
+    const connection = await db.getConnection()
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
+    const [result] = await  connection.query({sql:query,values:[parseInt(limit),parseInt(offset)]})
+    const totalPages = Math.ceil(totalItems / limit);
     connection.release()
-    if (!rows) {
-      return response(res, 500, null, "failed");
-    } else {
-      return response(res, 200, rows, "success");
-    }
+    return response(res, 200, result, "success",totalItems,totalPages,parseInt(page));
   } catch (error) {
     console.log(error);
+    return response(res,500,error,"failed")
   }
 };
 export const allInventarisFtti3 = async (req, res) => {
-  const query = `SELECT * FROM inventaris_ftti3 `;
-    const { search } = req.query;
-  
-  if (search) {
-    let querySearch = `SELECT * FROM inventaris_ftti3  WHERE no_aset LIKE '%${search}%' OR jenis LIKE '%${search}%' OR spesifikasi LIKE '%${search}%' OR posisi LIKE '%${search}%' OR keterangan LIKE '%${search}%';`;
+  const query = `SELECT * FROM inventaris_ftti3 LIMIT ? OFFSET ?`;
+
+  const { page = 1, limit = 5, params  } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const countQuery = `
+    SELECT COUNT(*) AS total
+    FROM inventaris_ftti3`;
+  let search = false;
+  if (params && params.search) {
+    search = params.search;
+  }
+  if(search){
+    let querySearch = `SELECT * FROM inventaris_ftti3 WHERE no_aset LIKE '%${search}%' OR jenis LIKE '%${search}%' OR spesifikasi LIKE '%${search}%' OR posisi LIKE '%${search}%' OR keterangan LIKE '%${search}%' LIMIT ? OFFSET ?;`;
+    let queryCountSearch = `SELECT COUNT(*) AS total FROM inventaris_ftti3 WHERE no_aset LIKE '%${search}%' OR jenis LIKE '%${search}%' OR spesifikasi LIKE '%${search}%' OR posisi LIKE '%${search}%' OR keterangan LIKE '%${search}%';`;
+
     try {
-      const connection = await db.getConnection();
-      const [result] = await connection.query({ sql: querySearch });
-      connection.release();
-      return response(res, 200, result, "success");
+      const connection = await db.getConnection()
+      const [countRows] = await connection.query({ sql: queryCountSearch });
+      const totalItems = countRows[0].total;
+      const [result] = await  connection.query({sql:querySearch,values:[parseInt(limit),parseInt(offset)]})
+      const totalPages = Math.ceil(totalItems / limit);
+      connection.release()
+      return response(res, 200, result, "success",totalItems,totalPages,parseInt(page));
     } catch (error) {
-      return response(res, 500, error, "failed");
+      return response(res,500,error,"failed")
     }
   }
   try {
-    const connection = await db.getConnection();
-    const [rows] = await connection.query({
-      sql: query,
-    });
+    const connection = await db.getConnection()
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
+    const [result] = await  connection.query({sql:query,values:[parseInt(limit),parseInt(offset)]})
+    const totalPages = Math.ceil(totalItems / limit);
     connection.release()
-    if (!rows) {
-      return response(res, 500, null, "failed");
-    } else {
-      return response(res, 200, rows, "success");
-    }
+    return response(res, 200, result, "success",totalItems,totalPages,parseInt(page));
   } catch (error) {
     console.log(error);
+    return response(res,500,error,"failed")
   }
 };
 export const allInventarisFtti4 = async (req, res) => {
-  const query = `SELECT * FROM inventaris_ftti4 `;
-  const { search } = req.query;
+  const query = `SELECT * FROM inventaris_ftti4 LIMIT ? OFFSET ?`;
 
-  if (search) {
-    let querySearch = `SELECT * FROM inventaris_ftti4  WHERE no_aset LIKE '%${search}%' OR jenis LIKE '%${search}%' OR spesifikasi LIKE '%${search}%' OR posisi LIKE '%${search}%' OR keterangan LIKE '%${search}%';`;
+  const { page = 1, limit = 5, params  } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const countQuery = `
+    SELECT COUNT(*) AS total
+    FROM inventaris_ftti4`;
+  let search = false;
+  if (params && params.search) {
+    search = params.search;
+  }
+  if(search){
+    let querySearch = `SELECT * FROM inventaris_ftti4 WHERE no_aset LIKE '%${search}%' OR jenis LIKE '%${search}%' OR spesifikasi LIKE '%${search}%' OR posisi LIKE '%${search}%' OR keterangan LIKE '%${search}%' LIMIT ? OFFSET ?;`;
+    let queryCountSearch = `SELECT COUNT(*) AS total FROM inventaris_ftti4 WHERE no_aset LIKE '%${search}%' OR jenis LIKE '%${search}%' OR spesifikasi LIKE '%${search}%' OR posisi LIKE '%${search}%' OR keterangan LIKE '%${search}%';`;
+
     try {
-      const connection = await db.getConnection();
-      const [result] = await connection.query({ sql: querySearch });
-      connection.release();
-      return response(res, 200, result, "success");
+      const connection = await db.getConnection()
+      const [countRows] = await connection.query({ sql: queryCountSearch });
+      const totalItems = countRows[0].total;
+      const [result] = await  connection.query({sql:querySearch,values:[parseInt(limit),parseInt(offset)]})
+      const totalPages = Math.ceil(totalItems / limit);
+      connection.release()
+      return response(res, 200, result, "success",totalItems,totalPages,parseInt(page));
     } catch (error) {
-      return response(res, 500, error, "failed");
+      return response(res,500,error,"failed")
     }
   }
   try {
-    const connection = await db.getConnection();
-    const [rows] = await connection.query({
-      sql: query,
-    });
+    const connection = await db.getConnection()
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
+    const [result] = await  connection.query({sql:query,values:[parseInt(limit),parseInt(offset)]})
+    const totalPages = Math.ceil(totalItems / limit);
     connection.release()
-    if (!rows) {
-      return response(res, 500, null, "failed");
-    } else {
-      return response(res, 200, rows, "success");
-    }
+    return response(res, 200, result, "success",totalItems,totalPages,parseInt(page));
   } catch (error) {
     console.log(error);
+    return response(res,500,error,"failed")
   }
 };
 

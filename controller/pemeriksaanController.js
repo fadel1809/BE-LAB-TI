@@ -15,15 +15,24 @@ import {
   editLaboratoriumSoftware
 } from "../utils/pemeriksaan.js";
 export const allPemeriksaanHardware = async (req, res) => {
-  const query = `SELECT * FROM pemeriksaan_hardware WHERE status_pemeriksaan = 'pengecekan' || status_pemeriksaan = 'revisi'`;
-
+    const { page = 1, limit = 5 } = req.query; // Default page 1, limit 10
+    const offset = (page - 1) * limit;
+    const query = `SELECT * FROM pemeriksaan_hardware WHERE status_pemeriksaan = 'pengecekan' || status_pemeriksaan = 'revisi' LIMIT ? OFFSET ?`;
+    const countQuery = `
+    SELECT COUNT(*) AS total 
+    FROM pemeriksaan_hardware 
+    WHERE status_pemeriksaan = 'pengecekan' OR status_pemeriksaan = 'revisi'`;
   try {
     const connection = await db.getConnection();
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
     const [rows] = await connection.query({
       sql: query,
+        values: [parseInt(limit), parseInt(offset)]
     });
+    const totalPages = Math.ceil(totalItems / limit);
     connection.release();
-    return response(res, 200, rows, "success");
+    return response(res, 200, rows, "success",totalItems,totalPages,parseInt(page));
   } catch (err) {
     console.log(err);
     return response(res, 500, null, "Terjadi kesalahan server");
@@ -62,45 +71,72 @@ export const getPemeriksaanSoftwareById = async (req, res) => {
   }
 };
 export const allPemeriksaanSoftware = async (req, res) => {
-  const query = `SELECT * FROM pemeriksaan_software WHERE status_pemeriksaan = 'pengecekan' || status_pemeriksaan = 'revisi'`;
-
+    const { page = 1, limit = 5 } = req.query; // Default page 1, limit 10
+    const offset = (page - 1) * limit;
+  const query = `SELECT * FROM pemeriksaan_software WHERE status_pemeriksaan = 'pengecekan' || status_pemeriksaan = 'revisi' LIMIT ? OFFSET ?`;
+    const countQuery = `
+    SELECT COUNT(*) AS total 
+    FROM pemeriksaan_software 
+    WHERE status_pemeriksaan = 'pengecekan' OR status_pemeriksaan = 'revisi'`;
   try {
     const connection = await db.getConnection();
+      const [countRows] = await connection.query({ sql: countQuery });
+      const totalItems = countRows[0].total;
     const [rows] = await connection.query({
       sql: query,
+        values: [parseInt(limit), parseInt(offset)]
     });
+      const totalPages = Math.ceil(totalItems / limit);
     connection.release();
-    return response(res, 200, rows, "success");
+    return response(res, 200, rows, "success",totalItems,totalPages,parseInt(page));
   } catch (err) {
     console.log(err);
     return response(res, 500, null, "Terjadi kesalahan server");
   }
 };
 export const historyPemeriksaanHardware = async (req, res) => {
-  const query = `SELECT * FROM pemeriksaan_hardware WHERE status_pemeriksaan = 'diterima' `;
-
+  const { page = 1, limit = 5 } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const query = `SELECT * FROM pemeriksaan_hardware WHERE status_pemeriksaan = 'diterima' LIMIT ? OFFSET ?`;
+  const countQuery = `
+    SELECT COUNT(*) AS total 
+    FROM pemeriksaan_hardware 
+    WHERE  status_pemeriksaan = 'diterima'`;
   try {
     const connection = await db.getConnection();
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
     const [rows] = await connection.query({
       sql: query,
+      values:[parseInt(limit), parseInt(offset)]
     });
+    const totalPages = Math.ceil(totalItems / limit);
     connection.release();
-    return response(res, 200, rows, "success");
+    return response(res, 200, rows, "success",totalItems,totalPages,parseInt(page));
   } catch (err) {
     console.log(err);
     return response(res, 500, null, "Terjadi kesalahan server");
   }
 };
 export const historyPemeriksaanSoftware = async (req, res) => {
-  const query = `SELECT * FROM pemeriksaan_software WHERE status_pemeriksaan = 'diterima'`;
-
+  const { page = 1, limit = 5 } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const query = `SELECT * FROM pemeriksaan_software WHERE status_pemeriksaan = 'diterima' LIMIT ? OFFSET ?`;
+  const countQuery = `
+    SELECT COUNT(*) AS total 
+    FROM pemeriksaan_software 
+    WHERE  status_pemeriksaan = 'diterima'`;
   try {
     const connection = await db.getConnection();
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
     const [rows] = await connection.query({
       sql: query,
+      values:[parseInt(limit), parseInt(offset)]
     });
+    const totalPages = Math.ceil(totalItems / limit);
     connection.release();
-    return response(res, 200, rows, "success");
+    return response(res, 200, rows, "success",totalItems,totalPages,parseInt(page));
   } catch (err) {
     console.log(err);
     return response(res, 500, null, "Terjadi kesalahan server");
@@ -227,7 +263,6 @@ export const createPemeriksaanHardware = async (req, res) => {
     );
   }
 };
-
 export const createPemeriksaanSoftware = async (req, res) => {
   const { tanggal, staff_lab, laboratorium, status_pemeriksaan } = req.body;
 
@@ -274,7 +309,6 @@ export const createPemeriksaanSoftware = async (req, res) => {
     );
   }
 };
-
 export const detailPemeriksaanHardwareById = async (req, res) => {
   const { id } = req.params;
   let laboratorium = "";
@@ -309,7 +343,6 @@ export const detailPemeriksaanHardwareById = async (req, res) => {
     return response(res, 500, null, "failed");
   }
 };
-
 export const detailPemeriksaanSoftwareById = async (req, res) => {
   const { id } = req.params;
   let laboratorium = "";
@@ -347,7 +380,6 @@ export const detailPemeriksaanSoftwareById = async (req, res) => {
     return response(res, 500, null, "failed");
   }
 };
-
 export const editPemeriksaanHardware = async (req, res) => {
   const { id } = req.params;
   const { tanggal, staff_lab, laboratorium } = req.body;
@@ -392,7 +424,6 @@ export const editPemeriksaanHardware = async (req, res) => {
     return response(res, 404, null, "gagal edit pemeriksaan hardware");
   }
 };
-
 export const editPemeriksaanSoftware = async (req, res) => {
  const { id } = req.params;
  const { tanggal, staff_lab, laboratorium } = req.body;
@@ -442,7 +473,6 @@ export const editPemeriksaanSoftware = async (req, res) => {
    return response(res, 404, null, "gagal edit pemeriksaan hardware");
  }
 };
-
 export const deletePemeriksaanHardware = async (req, res) => {
   const { id } = req.params;
   if (!id) {
@@ -482,7 +512,6 @@ export const deletePemeriksaanHardware = async (req, res) => {
     console.log(error);
   }
 };
-
 export const deletePemeriksaanSoftware = async (req, res) => {
   const { id } = req.params;
   if (!id) {
@@ -522,9 +551,9 @@ export const deletePemeriksaanSoftware = async (req, res) => {
 };
 export const statusRevisiPemeriksaanHardware = async (req, res) => {
   const { id } = req.params;
-
+  const {catatan} = req.body;
   const queryValidasi =
-    "UPDATE `pemeriksaan_hardware` SET `status_pemeriksaan`=? WHERE id=?";
+    "UPDATE `pemeriksaan_hardware` SET `status_pemeriksaan`=?, `catatan`=? WHERE id=?";
   const queryPemeriksaan = `SELECT * FROM pemeriksaan_hardware WHERE id=${id}`;
   try {
     const connection = await db.getConnection();
@@ -537,7 +566,7 @@ export const statusRevisiPemeriksaanHardware = async (req, res) => {
     const idPemeriksaan = pemeriksaan[0].id;
 
     if (
-      await connection.query(queryValidasi, ["revisi", idPemeriksaan])
+      await connection.query(queryValidasi, ["revisi",catatan, idPemeriksaan])
     ) {
       connection.release();
       return response(res, 200, null, "success");
@@ -549,9 +578,9 @@ export const statusRevisiPemeriksaanHardware = async (req, res) => {
 };
 export const statusRevisiPemeriksaanSoftware = async (req, res) => {
   const { id } = req.params;
-
+  const {catatan} = req.body
   const queryValidasi =
-    "UPDATE `pemeriksaan_software` SET `status_pemeriksaan`=? WHERE id=?";
+    "UPDATE `pemeriksaan_software` SET `status_pemeriksaan`=?, `catatan`=? WHERE id=?";
   const queryPemeriksaan = `SELECT * FROM pemeriksaan_software WHERE id=${id}`;
   try {
     const connection = await db.getConnection();
@@ -563,7 +592,7 @@ export const statusRevisiPemeriksaanSoftware = async (req, res) => {
     }
     const idPemeriksaan = pemeriksaan[0].id;
 
-    if (await connection.query(queryValidasi, ["revisi", idPemeriksaan])) {
+    if (await connection.query(queryValidasi, ["revisi",catatan, idPemeriksaan])) {
       connection.release();
       return response(res, 200, null, "success");
     }
@@ -599,7 +628,6 @@ export const statusValidasiLaboranPemeriksaanHardware = async (req, res) => {
     return response(res, 500, null, "fail");
   }
 };
-
 export const statusValidasiLaboranPemeriksaanSoftware = async (req, res) => {
   const { id } = req.params;
 
@@ -921,15 +949,24 @@ export const deleteDetailPemeriksaanSoftware = async (req, res) => {
 };
 
 export const getHasilPemeriksaanHardwareValidasiLaboran = async (req,res) => {
-  const query = `SELECT * FROM pemeriksaan_hardware WHERE status_pemeriksaan = 'validasi_laboran' `;
-
+  const { page = 1, limit = 5 } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const query = `SELECT * FROM pemeriksaan_hardware WHERE status_pemeriksaan = 'validasi_laboran' LIMIT ? OFFSET ?`;
+  const countQuery = `
+    SELECT COUNT(*) AS total 
+    FROM pemeriksaan_hardware 
+    WHERE status_pemeriksaan = 'validasi_laboran'`;
   try {
     const connection = await db.getConnection();
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
     const [rows] = await connection.query({
       sql: query,
+      values: [parseInt(limit), parseInt(offset)]
     });
+    const totalPages = Math.ceil(totalItems / limit);
     connection.release();
-    return response(res, 200, rows, "success");
+    return response(res, 200, rows, "success",totalItems,totalPages,parseInt(page));
   } catch (err) {
     console.log(err);
     return response(res, 500, null, "Terjadi kesalahan server");
@@ -937,45 +974,72 @@ export const getHasilPemeriksaanHardwareValidasiLaboran = async (req,res) => {
 }
 
 export const getHasilPemeriksaanSoftwareValidasiLaboran = async (req, res) => {
-  const query = `SELECT * FROM pemeriksaan_software WHERE status_pemeriksaan = 'validasi_laboran' `;
-
+  const { page = 1, limit = 5 } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const query = `SELECT * FROM pemeriksaan_software WHERE status_pemeriksaan = 'validasi_laboran' LIMIT ? OFFSET ?`;
+  const countQuery = `
+    SELECT COUNT(*) AS total 
+    FROM pemeriksaan_software
+    WHERE status_pemeriksaan = 'validasi_laboran'`;
   try {
     const connection = await db.getConnection();
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
     const [rows] = await connection.query({
       sql: query,
+      values: [parseInt(limit), parseInt(offset)]
     });
+    const totalPages = Math.ceil(totalItems / limit);
     connection.release();
-    return response(res, 200, rows, "success");
+    return response(res, 200, rows, "success",totalItems,totalPages,parseInt(page));
   } catch (err) {
     console.log(err);
     return response(res, 500, null, "Terjadi kesalahan server");
   }
 };
 export const getHasilPemeriksaanHardwareValidasiKalab = async (req,res) => {
-    const query = `SELECT * FROM pemeriksaan_hardware WHERE status_pemeriksaan = 'validasi_kalab' `;
-
-    try {
-      const connection = await db.getConnection();
-      const [rows] = await connection.query({
-        sql: query,
-      });
-      connection.release();
-      return response(res, 200, rows, "success");
-    } catch (err) {
-      console.log(err);
-      return response(res, 500, null, "Terjadi kesalahan server");
-    }
-}
-export const getHasilPemeriksaanSoftwareValidasiKalab = async (req,res) => {
-  const query = `SELECT * FROM pemeriksaan_software WHERE status_pemeriksaan = 'validasi_kalab' `;
-
+  const { page = 1, limit = 5 } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const query = `SELECT * FROM pemeriksaan_hardware WHERE status_pemeriksaan = 'validasi_kalab' LIMIT ? OFFSET ?`;
+  const countQuery = `
+    SELECT COUNT(*) AS total 
+    FROM pemeriksaan_hardware
+    WHERE status_pemeriksaan = 'validasi_kalab'`;
   try {
     const connection = await db.getConnection();
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
     const [rows] = await connection.query({
       sql: query,
+      values: [parseInt(limit), parseInt(offset)]
     });
+    const totalPages = Math.ceil(totalItems / limit);
     connection.release();
-    return response(res, 200, rows, "success");
+    return response(res, 200, rows, "success",totalItems,totalPages,parseInt(page));
+  } catch (err) {
+    console.log(err);
+    return response(res, 500, null, "Terjadi kesalahan server");
+  }
+}
+export const getHasilPemeriksaanSoftwareValidasiKalab = async (req,res) => {
+  const { page = 1, limit = 5 } = req.query; // Default page 1, limit 10
+  const offset = (page - 1) * limit;
+  const query = `SELECT * FROM pemeriksaan_software WHERE status_pemeriksaan = 'validasi_kalab' LIMIT ? OFFSET ?`;
+  const countQuery = `
+    SELECT COUNT(*) AS total 
+    FROM pemeriksaan_software
+    WHERE status_pemeriksaan = 'validasi_kalab'`;
+  try {
+    const connection = await db.getConnection();
+    const [countRows] = await connection.query({ sql: countQuery });
+    const totalItems = countRows[0].total;
+    const [rows] = await connection.query({
+      sql: query,
+      values: [parseInt(limit), parseInt(offset)]
+    });
+    const totalPages = Math.ceil(totalItems / limit);
+    connection.release();
+    return response(res, 200, rows, "success",totalItems,totalPages,parseInt(page));
   } catch (err) {
     console.log(err);
     return response(res, 500, null, "Terjadi kesalahan server");

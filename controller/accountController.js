@@ -4,7 +4,7 @@ import { db } from "../model/connection.js";
 import { response } from "../utils/response.js";
 import bcrypt from "bcryptjs"
 export const allStaffAccount = async (req,res) => {
-    const query = `SELECT id,email,username,role FROM user WHERE role='aslab' OR role='laboran'`;
+    const query = `SELECT id,email,username,role FROM user WHERE role='aslab' OR role='laboran' OR role='kalab'`;
     try {
         const connection = await db.getConnection()
         const [result] = await connection.query({sql:query})
@@ -21,7 +21,6 @@ export const allStaffAccount = async (req,res) => {
 export const editStaffAccount = async (req,res) => {
     const {email,username,role} = req.body;
     const {id} = req.params;
-    console.log(id)
     const cekIdQuery = `SELECT * FROM user WHERE id=${id}`
 
     try {

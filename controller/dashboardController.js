@@ -197,12 +197,11 @@ export const dashboardAslab = async (req,res) => {
    const [inventarisFtti4] = await connection.query({
      sql: queryInventarisFtti4,
    });
-   connection.release();
+
    const data = {
        pengecekanCount:pengecekanCount[0],
        softwarePengecekanCount:softwarePengecekanCount[0],
        historyHardware:historyHardware[0],
-       historyHardware:historySoftware[0],
        revisiHardware:revisiHardware[0],
        revisiSoftware:revisiSoftware[0],
        historySoftware:historySoftware[0],
@@ -211,7 +210,7 @@ export const dashboardAslab = async (req,res) => {
        inventarisFtti3:inventarisFtti3[0],
        inventarisFtti4:inventarisFtti4[0],
      }
-  
+     connection.release();
    return response(
      res,
      200,

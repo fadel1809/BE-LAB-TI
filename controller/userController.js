@@ -4,11 +4,11 @@ export const getCurrentUser = async (req, res) => {
   try {
     const connection = await db.getConnection();
     const [result] = await connection.query({
-      sql: `SELECT id,role,username FROM user WHERE id=${req.user.userId}`,
+      sql: `SELECT id,role,username,id_user FROM user WHERE id=${req.user.userId}`,
     });
     let data = {};
     result.map((val) => {
-      data = { id: val.id, role: val.role, username: val.username };
+      data = { id: val.id, role: val.role, username: val.username,id_user:val.id_user };
     });
     connection.release();
     return response(res, 200, { user: data }, "success");
