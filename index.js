@@ -31,6 +31,7 @@ import userRouter from "./routes/userRouter.js";
 import accountRouter from "./routes/accountRouter.js"
 import dashboardRouter from "./routes/dahsboardRouter.js"
 import messageRouter from "./routes/messageRouter.js";
+import contentRouter from "./routes/contentRouter.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
@@ -42,9 +43,10 @@ app.use("/api/v1/pemeriksaan", authenticateUser, pemeriksaanRouter);
 app.use("/api/v1/peminjaman", authenticateUser, peminjamanRouter);
 app.use("/api/v1/inventaris", authenticateUser, inventarisRouter);
 app.use("/api/v1/akun",authenticateUser, accountRouter)
-app.use("/api/v1/dashboard", authenticateUser, dashboardRouter);
+app.use("/api/v1/dashboard", dashboardRouter);
 app.use("/api/v1/user", authenticateUser, userRouter);
 app.use("/api/v1/message",authenticateUser,messageRouter)
+app.use("/api/v1/content",contentRouter)
 
 try {
   db.getConnection()

@@ -571,6 +571,7 @@ export const statusRevisiPemeriksaanHardware = async (req, res) => {
       connection.release();
       return response(res, 200, null, "success");
     }
+    connection.release()
   } catch (error) {
     console.log(error);
     return response(res, 500, null, "fail");
