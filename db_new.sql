@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Des 2024 pada 15.49
+-- Waktu pembuatan: 13 Jan 2025 pada 14.59
 -- Versi server: 11.4.3-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `lab_ti`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `content`
+--
+
+CREATE TABLE `content` (
+  `judul_section1` text NOT NULL,
+  `konten_section1` text NOT NULL,
+  `konten_section2` text NOT NULL,
+  `konten_alat` text NOT NULL,
+  `konten_ruang` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `content`
+--
+
+INSERT INTO `content` (`judul_section1`, `konten_section1`, `konten_section2`, `konten_alat`, `konten_ruang`) VALUES
+('Selamat Datang Di Website Laboratorium Teknik Informatika UHAMKA', 'Kami merupakan pusat penelitian dan inovasi di bidang Teknik Informatika yang berkomitmen untuk menghasilkan kontribusi yang berarti dalam perkembangan teknologi informasi. Dengan fokus pada pengembangan ilmu pengetahuan, kami menyediakan lingkungan yang memungkinkan mahasiswa dan peneliti untuk menjelajahi ide-ide baru dan menciptakan solusi inovatif. Bergabunglah dengan kami dalam perjalanan eksplorasi dan pembelajaran di dunia Teknik Informatika.', '\"Laboratorium Teknik Informatika Universitas Muhammadiyah Prof. Dr. Hamka adalah pusat keunggulan di dunia teknologi informasi, menjadi wadah bagi inovasi dan penelitian yang menginspirasi. Dengan didukung oleh tim ahli yang berkomitmen, kami menempatkan fokus pada pengembangan teknologi terkini, mengintegrasikan riset dan aplikasi praktis untuk menciptakan solusi yang relevan dan berdampak positif. Dalam perjalanan kami, kami tidak hanya menjembatani kesenjangan ilmu pengetahuan, tetapi juga mengambil peran aktif dalam memberikan kontribusi positif bagi masyarakat dan industri. Melalui kolaborasi yang erat antara mahasiswa, peneliti, dan industri, kami menciptakan lingkungan belajar yang dinamis, di mana ide-ide cemerlang berkembang menjadi proyek-proyek inovatif. Kami mengundang Anda untuk menjelajahi dunia kami di Laboratorium Teknik Informatika, tempat di mana ide-ide revolusioner bertemu dengan implementasi praktis, menciptakan masa depan yang terdepan dalam teknologi informasi. Bergabunglah dengan kami dalam membangun jalan menuju perkembangan ilmu pengetahuan dan memberikan dampak positif bagi masyarakat melalui inovasi teknologi.\"', 'Layanan peminjaman alat mendukung kebutuhan akademik dengan menyediakan prosedur peminjaman yang jelas dan terorganisasi. Peralatan yang tersedia dapat digunakan untuk menunjang kegiatan praktikum, penelitian, dan tugas akademik lainnya.', 'Layanan peminjaman ruang mendukung pelaksanaan kegiatan akademik dan non-akademik di lingkungan kampus. Ruang yang tersedia dapat digunakan untuk keperluan diskusi, praktikum, seminar, maupun kegiatan lain yang telah disetujui sesuai dengan prosedur yang berlaku.');
 
 -- --------------------------------------------------------
 
@@ -253,7 +274,7 @@ INSERT INTO `detail_pemeriksaan_hardware_ftti1` (`id`, `id_pemeriksaan`, `no_pc`
 (1930, '128', '7', 'F.A.215.060101.034.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
 (1931, '128', '8', 'F.A.215.060101.033.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
 (1932, '128', '9', 'F.A.215.060101.032.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
-(1933, '128', 'PC-Dosen', 'F.A.215.060101.008.1.2022', 'SAMSUNG C24F390FHE', 'Logitech Y-U0009', 'Logitech M-U0026', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(1933, '128', 'PC-Dosen', 'F.A.215.060101.008.1.2022', 'SAMSUNG C24F390FHE', 'Logitech Y-U0009', 'Logitech M-U0026', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', 'rusak'),
 (1975, '136', '1', 'F.A.215.060101.040.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
 (1976, '136', '10', 'F.A.215.060101.031.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
 (1977, '136', '11', 'F.A.215.060101.021.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
@@ -295,7 +316,89 @@ INSERT INTO `detail_pemeriksaan_hardware_ftti1` (`id`, `id_pemeriksaan`, `no_pc`
 (2012, '136', '7', 'F.A.215.060101.034.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
 (2013, '136', '8', 'F.A.215.060101.033.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
 (2014, '136', '9', 'F.A.215.060101.032.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
-(2015, '136', 'PC-Dosen', 'F.A.215.060101.008.1.2022', 'SAMSUNG C24F390FHE', 'Logitech Y-U0009', 'Logitech M-U0026', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL);
+(2015, '136', 'PC-Dosen', 'F.A.215.060101.008.1.2022', 'SAMSUNG C24F390FHE', 'Logitech Y-U0009', 'Logitech M-U0026', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2016, '140', '1', 'F.A.215.060101.040.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2017, '140', '10', 'F.A.215.060101.031.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2018, '140', '11', 'F.A.215.060101.021.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2019, '140', '12', 'F.A.215.060101.022.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2020, '140', '13', 'F.A.215.060101.023.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2021, '140', '14', 'F.A.215.060101.024.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2022, '140', '15', 'F.A.215.060101.025.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech M- U0026', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2023, '140', '16', 'F.A.215.060101.026.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2024, '140', '17', 'F.A.215.060101.027.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2025, '140', '18', 'F.A.215.060101.028.1.2022', 'SAMSUNG C24F390FHE', 'Logitech Y- U0036', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2026, '140', '19', 'F.A.215.060101.029.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2027, '140', '2', 'F.A.215.060101.039.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 4GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2028, '140', '20', 'F.A.215.060101.030.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2029, '140', '21', 'F.A.215.060101.020.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2030, '140', '22', 'F.A.215.060101.019.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2031, '140', '23', 'F.A.215.060101.018.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2032, '140', '24', 'F.A.215.060101.017.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2033, '140', '25', 'F.A.215.060101.016.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech M- U0026', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2034, '140', '26', 'F.A.215.060101.015.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2035, '140', '27', 'F.A.215.060101.014.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2036, '140', '28', 'F.A.215.060101.013.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2037, '140', '29', 'F.A.215.060101.012.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2038, '140', '3', 'F.A.215.060101.038.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2039, '140', '30', 'F.A.215.060101.011.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2040, '140', '31', 'F.A.215.040302.002.1.2019', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i5-3330', '4GB DDR3', 'Gigabyte Tech H61M- DS2 4.0', 'Intel HD Graphics', 'WDC 500GB', 'SSD KINGSTON SA400S37 240GB', NULL),
+(2041, '140', '32', 'F.A.215.060101.009.1.2022', 'SAMSUNG C24F390FHE', 'KOMIC SR- K8850M', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2042, '140', '33', 'F.A.215.060101.010.1.2022', 'SAMSUNG C24F390FHE', 'Komic KMP-505', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2043, '140', '34', 'F.A.215.060101.001.1.2022', 'SAMSUNG C24F390FHE', 'Komic SR-K303', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2044, '140', '35', 'F.A.215.060101.002.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech M- U0026', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2045, '140', '36', 'F.A.215.060101.003.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2046, '140', '37', 'F.A.215.060101.004.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2047, '140', '38', 'F.A.215.060101.005.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2048, '140', '39', 'F.A.215.060101.006.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2049, '140', '4', 'F.A.215.060101.037.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2050, '140', '40', 'F.A.215.060101.007.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2051, '140', '5', 'F.A.215.060101.036.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2052, '140', '6', 'F.A.215.060101.035.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2053, '140', '7', 'F.A.215.060101.034.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2054, '140', '8', 'F.A.215.060101.033.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2055, '140', '9', 'F.A.215.060101.032.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2056, '140', 'PC-Dosen', 'F.A.215.060101.008.1.2022', 'SAMSUNG C24F390FHE', 'Logitech Y-U0009', 'Logitech M-U0026', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2180, '151', '1', 'F.A.215.060101.040.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2181, '151', '10', 'F.A.215.060101.031.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2182, '151', '11', 'F.A.215.060101.021.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2183, '151', '12', 'F.A.215.060101.022.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2184, '151', '13', 'F.A.215.060101.023.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2185, '151', '14', 'F.A.215.060101.024.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2186, '151', '15', 'F.A.215.060101.025.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech M- U0026', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2187, '151', '16', 'F.A.215.060101.026.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2188, '151', '17', 'F.A.215.060101.027.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2189, '151', '18', 'F.A.215.060101.028.1.2022', 'SAMSUNG C24F390FHE', 'Logitech Y- U0036', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2190, '151', '19', 'F.A.215.060101.029.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2191, '151', '2', 'F.A.215.060101.039.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 4GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2192, '151', '20', 'F.A.215.060101.030.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2193, '151', '21', 'F.A.215.060101.020.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2194, '151', '22', 'F.A.215.060101.019.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2195, '151', '23', 'F.A.215.060101.018.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2196, '151', '24', 'F.A.215.060101.017.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2197, '151', '25', 'F.A.215.060101.016.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech M- U0026', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2198, '151', '26', 'F.A.215.060101.015.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2199, '151', '27', 'F.A.215.060101.014.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2200, '151', '28', 'F.A.215.060101.013.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2201, '151', '29', 'F.A.215.060101.012.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2202, '151', '3', 'F.A.215.060101.038.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2203, '151', '30', 'F.A.215.060101.011.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2204, '151', '31', 'F.A.215.040302.002.1.2019', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i5-3330', '4GB DDR3', 'Gigabyte Tech H61M- DS2 4.0', 'Intel HD Graphics', 'WDC 500GB', 'SSD KINGSTON SA400S37 240GB', NULL),
+(2205, '151', '32', 'F.A.215.060101.009.1.2022', 'SAMSUNG C24F390FHE', 'KOMIC SR- K8850M', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2206, '151', '33', 'F.A.215.060101.010.1.2022', 'SAMSUNG C24F390FHE', 'Komic KMP-505', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2207, '151', '34', 'F.A.215.060101.001.1.2022', 'SAMSUNG C24F390FHE', 'Komic SR-K303', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2208, '151', '35', 'F.A.215.060101.002.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech M- U0026', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2209, '151', '36', 'F.A.215.060101.003.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2210, '151', '37', 'F.A.215.060101.004.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2211, '151', '38', 'F.A.215.060101.005.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2212, '151', '39', 'F.A.215.060101.006.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2213, '151', '4', 'F.A.215.060101.037.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2214, '151', '40', 'F.A.215.060101.007.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2215, '151', '5', 'F.A.215.060101.036.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2216, '151', '6', 'F.A.215.060101.035.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2217, '151', '7', 'F.A.215.060101.034.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2218, '151', '8', 'F.A.215.060101.033.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2219, '151', '9', 'F.A.215.060101.032.1.2022', 'SAMSUNG C24F390FHE', 'Logitech K100', 'Logitech B100', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL),
+(2220, '151', 'PC-Dosen', 'F.A.215.060101.008.1.2022', 'SAMSUNG C24F390FHE', 'Logitech Y-U0009', 'Logitech M-U0026', 'i7-11700F', '16GB DDR4', 'ASUS PRIME H510M- E', 'GeForce RTX 3050 8GB', 'SEAGATE 500GB', 'SSD VGEN RESCUE 240GB', NULL);
 
 -- --------------------------------------------------------
 
@@ -523,7 +626,40 @@ INSERT INTO `detail_pemeriksaan_hardware_ftti2` (`id`, `id_pemeriksaan`, `no_pc`
 (927, '137', '30', 'F.A.215.040302.009.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
 (928, '137', '31', 'F.A.215.040302.007.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
 (929, '137', '32', 'F.A.215.040302.004.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
-(930, '137', 'PC-DOSEN', 'F.A.215.040302.001.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'ASUS H61M-K', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', '');
+(930, '137', 'PC-DOSEN', 'F.A.215.040302.001.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'ASUS H61M-K', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(931, '141', '1', 'F.A.215.040302.012.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'ASUS H61M-K', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(932, '141', '2', 'F.A.215.040302.030.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(933, '141', '3', 'F.A.215.040302.022.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'ASUS H61M-K', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(934, '141', '4', 'F.A.215.040302.005.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(935, '141', '5', 'F.A.215.040302.014.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(936, '141', '6', 'F.A.215.040302.016.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(937, '141', '7', 'F.A.215.040302.015.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(938, '141', '8', 'F.A.215.040302.008.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(939, '141', '9', 'F.A.215.040302.010.1.2018', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(940, '141', '10', 'F.A.215.040302.038.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(941, '141', '11', 'F.A.215.040302.027.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(942, '141', '12', 'F.A.215.040302.016.1.2018', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(943, '141', '13', 'F.A.215.040302.001.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i7 - 3770', '4 GB DDR3', 'ASUS H61M-K', 'GeForce 9300 GS', 'Samsung 150 GB', 'ADATA 240 GB', 'Connect', ''),
+(944, '141', '14', 'F.A.215.040302.021.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(945, '141', '15', 'F.A.215.040302.018.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'ASUS H61M-K', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(946, '141', '16', 'F.A.215.040302.010.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'Microsoft Basic Display', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(947, '141', '17', 'F.A.215.040302.024.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(948, '141', '18', 'F.A.215.040302.006.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(949, '141', '19', 'F.A.215.040302.034.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'ASUS H61M-K', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(950, '141', '20', 'F.A.215.040302.013.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'ASUS H61M-K', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(951, '141', '21', 'F.A.215.040302.029.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(952, '141', '22', 'F.A.215.040202.007.1.2019', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(953, '141', '23', 'F.A.215.040302.020.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(954, '141', '24', 'F.A.215.040302.037.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(955, '141', '25', 'F.A.215.040302.003.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', '', 'Connect', ''),
+(956, '141', '26', 'F.A.215.040302.039.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(957, '141', '27', 'F.A.215.040302.035.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'ASUS H61M-K', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(958, '141', '28', 'F.A.215.040302.011.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(959, '141', '29', 'F.A.215.040202.031.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(960, '141', '30', 'F.A.215.040302.009.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(961, '141', '31', 'F.A.215.040302.007.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(962, '141', '32', 'F.A.215.040302.004.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'Gigabyte Tech', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', ''),
+(963, '141', 'PC-DOSEN', 'F.A.215.040302.001.1.2017', 'BENQ G9I0WAL', 'Logitech K100', 'Logitech B100', 'i5 - 3330', '4 GB DDR3', 'ASUS H61M-K', 'GeForce 210 2GB DDR3', 'WDC 500 GB', 'ADATA 240 GB', 'Connect', '');
 
 -- --------------------------------------------------------
 
@@ -676,7 +812,69 @@ INSERT INTO `detail_pemeriksaan_hardware_ftti3` (`id`, `id_pemeriksaan`, `no_pc`
 (434, '138', '28', 'F.A.217.040302.004.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i3 - 3220', '8 GB ', 'Foxconn', 'Intel HD 210 700MB', 'WDC 500 GB', 'Kingstone 240GB', ''),
 (435, '138', '29', 'F.A.217.040302.009.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
 (436, '138', '30', 'F.A.217.040302.009.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i3 - 3220', '4 GB ', 'Foxconn', 'Intel HD 210 700MB', 'WDC 500 GB', 'Kingstone 240GB', ''),
-(437, '138', 'DOSEN-PC', 'F.A.217.040302.017.1.2018', 'HP LV1911', 'Hp KU-0316', 'Logitech M-U0026', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', '');
+(437, '138', 'DOSEN-PC', 'F.A.217.040302.017.1.2018', 'HP LV1911', 'Hp KU-0316', 'Logitech M-U0026', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(438, '143', '1', 'F.A.217.040302.001.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '8 GB', ' Intel Corporation', 'AMD Radeon HD 7600 4GB', 'Seagate 1 TB', 'Kingstone 240GB', ''),
+(439, '143', '2', 'F.A.217.040302.002.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(440, '143', '3', 'F.A.217.040302.006.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i5 - 2500', '8 GB', 'ASUSTek\nComputer inc.', 'Intel HD 210 700MB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(441, '143', '4', 'F.A.217.040302.004.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'Seagate 1 TB', 'Kingstone 240GB', ''),
+(442, '143', '5', 'F.A.217.040302.001.1.2019', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'Seagate 1 TB', 'Kingstone 240GB', ''),
+(443, '143', '6', 'F.A.217.040302.007.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i3-3220', '8 GB ', 'Foxconn', 'Intel HD 210 700 MB', 'Seagate 500 GB', 'Kingstone 240GB', ''),
+(444, '143', '7', 'F.A.217.040302.007.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'Seagate 1 TB', 'Kingstone 240GB', ''),
+(445, '143', '8', 'F.A.217.040302.008.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(446, '143', '9', 'F.A.217.040302.005.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i5 - 3470', '8 GB ', 'Foxconn', 'Nvidia Geforce 210 1GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(447, '143', '10', '', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '4 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(448, '143', '11', 'F.A.217.040302.011.1.2018', 'BenQ G9I0WAL', 'Hp KU-0316', 'Logitech M-U0026', 'i7 - 2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'Seagate 1 TB', '', ''),
+(449, '143', '12', 'F.A.217.040302.012.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'Seagate 1 TB', 'Kingstone 240GB', ''),
+(450, '143', '13', 'F.A.217.040302.013.1.2018', 'HP LV1911', 'Hp KU-0316', 'Logitech M-U0026', 'i7 - 2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'Seagate 1 TB', 'Kingstone 240GB', ''),
+(451, '143', '14', 'F.A.217.040302.006.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 3770', '8 GB ', 'ASUS H61M-K', '', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(452, '143', '15', 'F.A.217.040302.014.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(453, '143', '16', 'F.A.217.040302.003.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'Seagate 1 TB', 'Kingstone 240GB', ''),
+(454, '143', '17', 'F.A.217.040302.018.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', '', 'Kingstone 240GB', ''),
+(455, '143', '18', 'F.A.214.040302.012.1.2019', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i3 - 3220', '4 GB ', 'Foxconn', 'Intel HD 700 MB', 'Seagate 500 GB', 'Kingstone 240GB', ''),
+(456, '143', '19', 'F.A.217.040302.002.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i3 - 3220', '4 GB ', 'Foxconn', 'Intel HD 700 MB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(457, '143', '20', 'F.A.217.040302.015.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(458, '143', '21', 'F.A.217.040302.012.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i3 - 3220', '8 GB ', 'Foxconn', 'Intel HD 210 700MB', 'Seagate 1 TB', 'Kingstone 240GB', ''),
+(459, '143', '22', '', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(460, '143', '23', 'F.A.215.040302.026.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i5 - 3330', '4 GB ', 'Foxconn', 'Intel HD 210 700MB', 'Seagate 500 GB', 'Kingstone 240GB', ''),
+(461, '143', '24', 'F.A.215.040302.023.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i5 - 3330', '4 GB ', 'Foxconn', 'Intel HD 210 700MB', 'Seagate 500 GB', 'Kingstone 240GB', ''),
+(462, '143', '25', 'F.A.214.040202.004.1.2019', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(463, '143', '26', 'F.A.217.040302.008.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i3 - 3220', '8 GB ', 'Foxconn', 'Intel HD 210 700MB', 'Seagate 500 GB', 'Kingstone 240GB', ''),
+(464, '143', '27', 'F.A.217.040302.005.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7-2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(465, '143', '28', 'F.A.217.040302.004.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i3 - 3220', '8 GB ', 'Foxconn', 'Intel HD 210 700MB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(466, '143', '29', 'F.A.217.040302.009.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(467, '143', '30', 'F.A.217.040302.009.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i3 - 3220', '4 GB ', 'Foxconn', 'Intel HD 210 700MB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(468, '143', 'DOSEN-PC', 'F.A.217.040302.017.1.2018', 'HP LV1911', 'Hp KU-0316', 'Logitech M-U0026', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(500, '148', '1', 'F.A.217.040302.001.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '8 GB', ' Intel Corporation', 'AMD Radeon HD 7600 4GB', 'Seagate 1 TB', 'Kingstone 240GB', ''),
+(501, '148', '2', 'F.A.217.040302.002.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(502, '148', '3', 'F.A.217.040302.006.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i5 - 2500', '8 GB', 'ASUSTek\nComputer inc.', 'Intel HD 210 700MB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(503, '148', '4', 'F.A.217.040302.004.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'Seagate 1 TB', 'Kingstone 240GB', ''),
+(504, '148', '5', 'F.A.217.040302.001.1.2019', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'Seagate 1 TB', 'Kingstone 240GB', ''),
+(505, '148', '6', 'F.A.217.040302.007.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i3-3220', '8 GB ', 'Foxconn', 'Intel HD 210 700 MB', 'Seagate 500 GB', 'Kingstone 240GB', ''),
+(506, '148', '7', 'F.A.217.040302.007.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'Seagate 1 TB', 'Kingstone 240GB', ''),
+(507, '148', '8', 'F.A.217.040302.008.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(508, '148', '9', 'F.A.217.040302.005.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i5 - 3470', '8 GB ', 'Foxconn', 'Nvidia Geforce 210 1GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(509, '148', '10', '', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '4 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(510, '148', '11', 'F.A.217.040302.011.1.2018', 'BenQ G9I0WAL', 'Hp KU-0316', 'Logitech M-U0026', 'i7 - 2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'Seagate 1 TB', '', ''),
+(511, '148', '12', 'F.A.217.040302.012.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'Seagate 1 TB', 'Kingstone 240GB', ''),
+(512, '148', '13', 'F.A.217.040302.013.1.2018', 'HP LV1911', 'Hp KU-0316', 'Logitech M-U0026', 'i7 - 2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'Seagate 1 TB', 'Kingstone 240GB', ''),
+(513, '148', '14', 'F.A.217.040302.006.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 3770', '8 GB ', 'ASUS H61M-K', '', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(514, '148', '15', 'F.A.217.040302.014.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(515, '148', '16', 'F.A.217.040302.003.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'Seagate 1 TB', 'Kingstone 240GB', ''),
+(516, '148', '17', 'F.A.217.040302.018.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', '', 'Kingstone 240GB', ''),
+(517, '148', '18', 'F.A.214.040302.012.1.2019', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i3 - 3220', '4 GB ', 'Foxconn', 'Intel HD 700 MB', 'Seagate 500 GB', 'Kingstone 240GB', ''),
+(518, '148', '19', 'F.A.217.040302.002.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i3 - 3220', '4 GB ', 'Foxconn', 'Intel HD 700 MB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(519, '148', '20', 'F.A.217.040302.015.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(520, '148', '21', 'F.A.217.040302.012.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i3 - 3220', '8 GB ', 'Foxconn', 'Intel HD 210 700MB', 'Seagate 1 TB', 'Kingstone 240GB', ''),
+(521, '148', '22', '', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(522, '148', '23', 'F.A.215.040302.026.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i5 - 3330', '4 GB ', 'Foxconn', 'Intel HD 210 700MB', 'Seagate 500 GB', 'Kingstone 240GB', ''),
+(523, '148', '24', 'F.A.215.040302.023.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i5 - 3330', '4 GB ', 'Foxconn', 'Intel HD 210 700MB', 'Seagate 500 GB', 'Kingstone 240GB', ''),
+(524, '148', '25', 'F.A.214.040202.004.1.2019', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(525, '148', '26', 'F.A.217.040302.008.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i3 - 3220', '8 GB ', 'Foxconn', 'Intel HD 210 700MB', 'Seagate 500 GB', 'Kingstone 240GB', ''),
+(526, '148', '27', 'F.A.217.040302.005.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7-2600', '16 GB', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(527, '148', '28', 'F.A.217.040302.004.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i3 - 3220', '8 GB ', 'Foxconn', 'Intel HD 210 700MB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(528, '148', '29', 'F.A.217.040302.009.1.2018', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(529, '148', '30', 'F.A.217.040302.009.1.2017', 'HP LV1911', 'Hp KU-0316', 'HP M-U0031-O', 'i3 - 3220', '4 GB ', 'Foxconn', 'Intel HD 210 700MB', 'WDC 500 GB', 'Kingstone 240GB', ''),
+(530, '148', 'DOSEN-PC', 'F.A.217.040302.017.1.2018', 'HP LV1911', 'Hp KU-0316', 'Logitech M-U0026', 'i7 - 2600', '8 GB ', 'Intel Corporation', 'AMD Radeon HD 7600 4GB', 'WDC 500 GB', 'Kingstone 240GB', '');
 
 -- --------------------------------------------------------
 
@@ -768,7 +966,50 @@ INSERT INTO `detail_pemeriksaan_hardware_ftti4` (`id`, `id_pemeriksaan`, `no_pc`
 (338, '139', '18', '', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
 (339, '139', '19', '', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
 (340, '139', '20', '', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
-(341, '139', 'PC-DOSEN', 'F.A.218.040302.001.1.2019', 'BenQ G9010WAL', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', '');
+(341, '139', 'PC-DOSEN', 'F.A.218.040302.001.1.2019', 'BenQ G9010WAL', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(342, '142', '1', 'F.A.218.040302.017.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(343, '142', '2', 'F.A.218.040302.016.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(344, '142', '3', 'F.A.218.040302.015.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(345, '142', '4', 'F.A.218.040302.014.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WD 500GB', '-', ''),
+(346, '142', '5', 'F.A.218.040302.013.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(347, '142', '6', 'F.A.218.040302.012.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(348, '142', '7', 'F.A.218.040302.011.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(349, '142', '8', 'F.A.218.040302.021.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'Intel(R) HD 630', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(350, '142', '9', 'F.A.218.040302.020.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(351, '142', '10', 'F.A.218.040302.019.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(352, '142', '11', 'F.A.218.040302.018.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(353, '142', '12', 'F.A.218.040302.007.1.2019', 'BenQ G9010WAL', 'VARRO', 'Logitech B100', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(354, '142', '13', 'F.A.218.040302.008.1.2019', 'BenQ G9010WAL', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(355, '142', '14', 'F.A.218.040302.009.1.2019', 'LG 20M37A', 'VARRO', 'Logitech B100', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(356, '142', '15', 'F.A.218.040302.010.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(357, '142', '16', 'F.A.218.040302.006.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(358, '142', '17', 'F.A.218.040302.005.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(359, '142', '18', '', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(360, '142', '19', '', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(361, '142', '20', '', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(362, '142', 'PC-DOSEN', 'F.A.218.040302.001.1.2019', 'BenQ G9010WAL', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(363, '149', '1', 'F.A.218.040302.017.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(364, '149', '2', 'F.A.218.040302.016.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(365, '149', '3', 'F.A.218.040302.015.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(366, '149', '4', 'F.A.218.040302.014.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WD 500GB', '-', ''),
+(367, '149', '5', 'F.A.218.040302.013.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(368, '149', '6', 'F.A.218.040302.012.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(369, '149', '7', 'F.A.218.040302.011.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(370, '149', '8', 'F.A.218.040302.021.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'Intel(R) HD 630', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(371, '149', '9', 'F.A.218.040302.020.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(372, '149', '10', 'F.A.218.040302.019.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(373, '149', '11', 'F.A.218.040302.018.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(374, '149', '12', 'F.A.218.040302.007.1.2019', 'BenQ G9010WAL', 'VARRO', 'Logitech B100', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(375, '149', '13', 'F.A.218.040302.008.1.2019', 'BenQ G9010WAL', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(376, '149', '14', 'F.A.218.040302.009.1.2019', 'LG 20M37A', 'VARRO', 'Logitech B100', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(377, '149', '15', 'F.A.218.040302.010.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(378, '149', '16', 'F.A.218.040302.006.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(379, '149', '17', 'F.A.218.040302.005.1.2019', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(380, '149', '18', '', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(381, '149', '19', '', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(382, '149', '20', '', 'LG 20M37A', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(383, '149', 'PC-DOSEN', 'F.A.218.040302.001.1.2019', 'BenQ G9010WAL', 'VARRO', 'VARRO', 'i7 - 7700', 'DDR4 8 GB', 'Gigabyte Tech H110M', 'GeForce GT 1030', 'WDC 1 TB', 'Kingston 120 GB', ''),
+(405, '139', '412', 'asdasd', 'asdasdas', 'dasdasd', 'asdasdas', '', 'sdasdas', 'asdasdas', 'dasdasdas', 'dsadas', 'dasdasdas', 'dassada');
 
 -- --------------------------------------------------------
 
@@ -924,7 +1165,8 @@ INSERT INTO `detail_pemeriksaan_software_ftti1` (`id`, `id_pemeriksaan`, `no_pc`
 (617, '50', '38', 'WIN 11 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
 (618, '50', '39', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
 (619, '50', '40', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
-(620, '50', 'PC-DOSEN', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available');
+(620, '50', 'PC-DOSEN', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(703, '50', '41', 'dasdsa', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available');
 
 -- --------------------------------------------------------
 
@@ -1125,7 +1367,75 @@ INSERT INTO `detail_pemeriksaan_software_ftti2` (`id`, `id_pemeriksaan`, `no_pc`
 (364, '51', '30', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
 (365, '51', '31', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
 (366, '51', '32', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
-(367, '51', 'PC-DOSEN', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available');
+(367, '51', 'PC-DOSEN', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(368, '54', '1', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(369, '54', '2', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(370, '54', '3', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(371, '54', '4', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(372, '54', '5', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(373, '54', '6', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(374, '54', '7', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(375, '54', '8', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(376, '54', '9', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(377, '54', '10', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(378, '54', '11', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(379, '54', '12', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(380, '54', '13', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(381, '54', '14', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(382, '54', '15', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(383, '54', '16', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(384, '54', '17', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(385, '54', '18', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(386, '54', '19', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(387, '54', '20', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(388, '54', '21', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(389, '54', '22', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(390, '54', '23', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(391, '54', '24', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(392, '54', '25', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(393, '54', '26', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(394, '54', '27', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(395, '54', '28', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(396, '54', '29', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(397, '54', '30', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available');
+INSERT INTO `detail_pemeriksaan_software_ftti2` (`id`, `id_pemeriksaan`, `no_pc`, `OS`, `jaringan`, `chrome`, `devcpp`, `xampp`, `netbeans`, `office`, `matlab`, `adobe_reader`, `visual_studio`, `balsamic`, `pycharm`, `cpu_simulator`, `photoshop`, `python`, `veyon`, `composer`, `arduino_ide`) VALUES
+(398, '54', '31', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(399, '54', '32', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(400, '54', 'PC-DOSEN', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(401, '58', '1', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(402, '58', '2', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(403, '58', '3', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(404, '58', '4', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(405, '58', '5', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(406, '58', '6', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(407, '58', '7', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(408, '58', '8', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(409, '58', '9', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(410, '58', '10', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(411, '58', '11', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(412, '58', '12', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(413, '58', '13', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(414, '58', '14', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(415, '58', '15', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(416, '58', '16', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(417, '58', '17', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(418, '58', '18', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(419, '58', '19', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(420, '58', '20', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(421, '58', '21', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(422, '58', '22', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(423, '58', '23', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(424, '58', '24', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(425, '58', '25', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(426, '58', '26', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(427, '58', '27', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(428, '58', '28', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(429, '58', '29', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(430, '58', '30', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(431, '58', '31', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(433, '58', 'PC-DOSEN', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(434, '47', '41', 'dasdsa', 'available', 'not_available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(435, '47', '41', 'dasdsa', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'not_available', 'available', 'available', 'available', 'available', 'available', 'available');
 
 -- --------------------------------------------------------
 
@@ -1312,7 +1622,69 @@ INSERT INTO `detail_pemeriksaan_software_ftti3` (`id`, `id_pemeriksaan`, `no_pc`
 (279, '52', '28', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
 (280, '52', '29', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
 (281, '52', '30', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
-(282, '52', 'DOSEN-MM', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available');
+(282, '52', 'DOSEN-MM', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(283, '55', '1', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(284, '55', '2', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(285, '55', '3', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(286, '55', '4', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(287, '55', '5', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(288, '55', '6', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(289, '55', '7', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(290, '55', '8', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(291, '55', '9', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(292, '55', '10', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(293, '55', '11', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(294, '55', '12', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(295, '55', '13', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(296, '55', '14', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(297, '55', '15', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(298, '55', '16', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(299, '55', '17', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(300, '55', '18', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(301, '55', '19', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(302, '55', '20', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(303, '55', '21', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(304, '55', '22', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(305, '55', '23', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(306, '55', '24', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(307, '55', '25', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(308, '55', '26', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(309, '55', '27', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(310, '55', '28', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(311, '55', '29', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(312, '55', '30', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(313, '55', 'DOSEN-MM', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(314, '59', '1', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(315, '59', '2', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(316, '59', '3', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(317, '59', '4', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(318, '59', '5', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(319, '59', '6', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(320, '59', '7', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(321, '59', '8', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(322, '59', '9', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(323, '59', '10', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(324, '59', '11', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(325, '59', '12', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(326, '59', '13', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(327, '59', '14', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(328, '59', '15', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(329, '59', '16', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(330, '59', '17', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(331, '59', '18', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(332, '59', '19', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(333, '59', '20', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(334, '59', '21', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(335, '59', '22', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(336, '59', '23', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(337, '59', '24', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(338, '59', '25', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(339, '59', '26', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(340, '59', '27', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(341, '59', '28', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(342, '59', '29', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(343, '59', '30', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(344, '59', 'DOSEN-MM', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available');
 
 -- --------------------------------------------------------
 
@@ -1383,7 +1755,91 @@ INSERT INTO `detail_pemeriksaan_software_ftti4` (`id`, `id_pemeriksaan`, `no_pc`
 (212, '53', '18', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
 (213, '53', '19', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
 (214, '53', '20', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
-(215, '53', 'PC-DOSEN', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available');
+(215, '53', 'PC-DOSEN', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(216, '56', '1', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(217, '56', '2', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(218, '56', '3', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(219, '56', '4', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(220, '56', '5', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(221, '56', '6', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(222, '56', '7', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(223, '56', '8', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(224, '56', '9', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(225, '56', '10', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(226, '56', '11', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(227, '56', '12', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(228, '56', '13', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(229, '56', '14', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(230, '56', '15', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(231, '56', '16', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(232, '56', '17', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(233, '56', '18', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(234, '56', '19', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(235, '56', '20', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(236, '56', 'PC-DOSEN', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(237, '60', '1', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(238, '60', '2', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(239, '60', '3', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(240, '60', '4', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(241, '60', '5', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(242, '60', '6', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(243, '60', '7', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(244, '60', '8', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(245, '60', '9', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(246, '60', '10', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(247, '60', '11', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(248, '60', '12', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(249, '60', '13', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(250, '60', '14', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(251, '60', '15', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(252, '60', '16', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(253, '60', '17', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(254, '60', '18', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(255, '60', '19', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(256, '60', '20', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(257, '60', 'PC-DOSEN', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(279, '62', '1', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(280, '62', '2', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(281, '62', '3', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(282, '62', '4', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(283, '62', '5', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(284, '62', '6', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(285, '62', '7', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(286, '62', '8', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(287, '62', '9', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(288, '62', '10', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(289, '62', '11', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(290, '62', '12', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(291, '62', '13', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(292, '62', '14', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(293, '62', '15', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(294, '62', '16', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(295, '62', '17', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(296, '62', '18', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(297, '62', '19', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(298, '62', '20', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(299, '62', 'PC-DOSEN', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(300, '63', '1', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(301, '63', '2', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(302, '63', '3', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(303, '63', '4', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(304, '63', '5', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(305, '63', '6', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(306, '63', '7', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(307, '63', '8', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(308, '63', '9', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(309, '63', '10', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(310, '63', '11', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(311, '63', '12', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(312, '63', '13', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(313, '63', '14', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(314, '63', '15', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(315, '63', '16', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(316, '63', '17', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(317, '63', '18', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(318, '63', '19', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(319, '63', '20', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available'),
+(320, '63', 'PC-DOSEN', 'WIN 10 64-bit', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available', 'available');
 
 -- --------------------------------------------------------
 
@@ -1405,11 +1861,11 @@ CREATE TABLE `inventaris_ftti1` (
 --
 
 INSERT INTO `inventaris_ftti1` (`id`, `no_aset`, `jenis`, `spesifikasi`, `posisi`, `keterangan`) VALUES
-(1, '﻿F.A.215.040302.005.1.2019', 'AC', 'DAIKIN FTV60BXV14', '', ''),
+(1, '﻿F.A.215.040302.005.1.2019', 'AC', 'DAIKIN FTV60BXV14', 'FTTI1', 'asdasdsa'),
 (2, 'F.A.215.040302.004.1.2019', 'AC', 'McQuay MWM030F-AFCG', '1', '1'),
 (3, 'F.A.215.040302.041.1.2017', 'Switch Jaringan', 'D-Link DES-1024D', '', ''),
 (4, 'F.A.215.040302.042.1.2017', 'Switch Jaringan', 'D-Link DES-1024D', '', ''),
-(5, '', 'Speaker USB', 'NYK', 'Dosen-RPL', ''),
+(5, '123', 'Speaker USB', 'NYK', 'Dosen-RPLL', 'sadsadsa'),
 (6, 'F.A.208.040102.001.1.2021', 'Webcam + Threepod', 'Logitech 720p', 'Dosen-RPL', ''),
 (7, '', 'VGA Splitter', 'MT-1504', 'Dosen-RPL', ''),
 (8, 'F.A.012.070401.012.1.2017', 'Fire Extinguisher', '', '', ''),
@@ -2524,7 +2980,39 @@ INSERT INTO `messages` (`id`, `user_id`, `username`, `room_id`, `message`, `time
 (29, 31, 'fadel1234', '31', 'woii', '2024-11-06 10:18:16'),
 (30, 32, 'laboran', '31', 'okeee', '2024-11-06 10:22:30'),
 (31, 34, 'aslab', '31', 'ada apa nih?', '2024-11-06 11:18:19'),
-(32, 31, 'fadel1234', '31', 'gapapa', '2024-11-18 07:30:22');
+(32, 31, 'fadel1234', '31', 'gapapa', '2024-11-18 07:30:22'),
+(33, 32, 'laboran', '31', 'halo lagi', '2024-12-29 02:02:35'),
+(34, 40, 'superadmin', '31', 'tes', '2025-01-05 17:07:58'),
+(35, 31, 'fadel1234', '31', 'halo', '2025-01-06 03:47:53'),
+(36, 31, 'fadel1234', '31', 'test', '2025-01-06 09:59:12'),
+(37, 31, 'fadel1234', '31', 'halo', '2025-01-06 10:01:15'),
+(38, 31, 'fadel1234', '31', 'hai', '2025-01-06 10:01:28'),
+(39, 31, 'fadel1234', '31', 'hai', '2025-01-06 10:07:43'),
+(40, 31, 'fadel1234', '31', '[', '2025-01-06 10:08:11'),
+(41, 31, 'fadel1234', '31', 'hai', '2025-01-06 10:10:34'),
+(42, 31, 'fadel1234', '31', 'hai', '2025-01-06 10:31:54'),
+(43, 31, 'fadel1234', '31', 'g', '2025-01-06 10:33:11'),
+(44, 31, 'fadel1234', '31', 'hai', '2025-01-06 11:21:07'),
+(45, 31, 'fadel1234', '31', 'ulang', '2025-01-06 11:23:04'),
+(46, 45, 'user1', '45', 'hai', '2025-01-06 11:25:09'),
+(47, 45, 'user1', '45', 'halo', '2025-01-06 11:25:16'),
+(48, 45, 'user1', '45', 'oi', '2025-01-06 11:28:51'),
+(49, 32, 'laboran', '31', 'oi', '2025-01-06 11:29:31'),
+(50, 31, 'fadel1234', '31', 'halo', '2025-01-06 12:00:21'),
+(51, 31, 'fadel1234', '31', 'hoi', '2025-01-06 12:00:30'),
+(52, 31, 'fadel1234', '31', 'hai', '2025-01-06 12:03:56'),
+(53, 31, 'fadel1234', '31', 'haloo', '2025-01-06 12:04:12'),
+(54, 31, 'fadel1234', '31', 'oii', '2025-01-06 12:04:21'),
+(55, 31, 'fadel1234', '31', 'hmm', '2025-01-06 12:04:35'),
+(56, 31, 'fadel1234', '31', 'hai', '2025-01-06 12:31:02'),
+(57, 31, 'fadel1234', '31', 'hai', '2025-01-06 12:32:57'),
+(58, 31, 'fadel1234', '31', 'halo', '2025-01-06 12:33:05'),
+(59, 31, 'fadel1234', '31', 'halo', '2025-01-08 13:21:51'),
+(60, 31, 'fadel1234', '31', 'hai', '2025-01-08 13:21:58'),
+(61, 45, 'user1', '45', 'a', '2025-01-08 13:22:23'),
+(62, 45, 'user1', '45', 'a', '2025-01-08 13:22:28'),
+(63, 34, 'aslab', '31', 'halo', '2025-01-08 17:02:13'),
+(64, 32, 'laboran', '45', 'halo', '2025-01-09 03:28:22');
 
 -- --------------------------------------------------------
 
@@ -2538,6 +3026,7 @@ CREATE TABLE `pemeriksaan_hardware` (
   `tanggal` date NOT NULL,
   `staff_lab` varchar(50) NOT NULL,
   `laboratorium` enum('FTTI1','FTTI2','FTTI3','FTTI4') NOT NULL,
+  `catatan` text NOT NULL,
   `status_pemeriksaan` enum('pengecekan','validasi_laboran','validasi_kalab','revisi','diterima') DEFAULT 'pengecekan'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -2545,12 +3034,19 @@ CREATE TABLE `pemeriksaan_hardware` (
 -- Dumping data untuk tabel `pemeriksaan_hardware`
 --
 
-INSERT INTO `pemeriksaan_hardware` (`id`, `kuartal`, `tanggal`, `staff_lab`, `laboratorium`, `status_pemeriksaan`) VALUES
-(128, '4', '2024-11-06', 'laboran', 'FTTI1', 'validasi_kalab'),
-(136, '4', '2024-11-06', 'aslab', 'FTTI1', 'validasi_laboran'),
-(137, '4', '2024-11-06', 'aslab', 'FTTI2', 'diterima'),
-(138, '4', '2024-11-06', 'aslab', 'FTTI3', 'pengecekan'),
-(139, '4', '2024-11-06', 'aslab', 'FTTI4', 'pengecekan');
+INSERT INTO `pemeriksaan_hardware` (`id`, `kuartal`, `tanggal`, `staff_lab`, `laboratorium`, `catatan`, `status_pemeriksaan`) VALUES
+(128, '4', '2024-11-06', 'laboran', 'FTTI1', 'ada yang kurang lagi (dari Laboran)', 'revisi'),
+(136, '4', '2024-11-06', 'aslab', 'FTTI1', 'full (dari Kalab)', 'revisi'),
+(137, '4', '2024-11-06', 'aslab', 'FTTI2', '', 'diterima'),
+(138, '4', '2024-11-06', 'aslab', 'FTTI3', 'ada yang kurang lagi (dari Laboran)', 'diterima'),
+(139, '4', '2024-11-06', 'aslab', 'FTTI4', 'ada yang kurang (dari Kalab)', 'revisi'),
+(140, '4', '2024-12-22', 'laboran', 'FTTI1', 'full banget (dari Kalab)', 'revisi'),
+(141, '4', '2024-12-22', 'laboran', 'FTTI2', '', 'diterima'),
+(142, '4', '2024-12-22', 'laboran', 'FTTI4', '', 'diterima'),
+(143, '4', '2024-12-22', 'laboran', 'FTTI3', '', 'validasi_laboran'),
+(148, '4', '2024-12-29', 'laboran', 'FTTI3', '', 'pengecekan'),
+(149, '4', '2024-12-29', 'laboran', 'FTTI4', '', 'pengecekan'),
+(151, '1', '2025-01-04', 'superadmin', 'FTTI1', 'ada yang kurang (dari Admin)', 'validasi_kalab');
 
 -- --------------------------------------------------------
 
@@ -2564,6 +3060,7 @@ CREATE TABLE `pemeriksaan_software` (
   `tanggal` date NOT NULL,
   `staff_lab` varchar(50) NOT NULL,
   `laboratorium` enum('FTTI1','FTTI2','FTTI3','FTTI4') NOT NULL,
+  `catatan` text DEFAULT NULL,
   `status_pemeriksaan` enum('pengecekan','validasi_laboran','validasi_kalab','revisi','diterima') NOT NULL DEFAULT 'pengecekan'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -2571,14 +3068,22 @@ CREATE TABLE `pemeriksaan_software` (
 -- Dumping data untuk tabel `pemeriksaan_software`
 --
 
-INSERT INTO `pemeriksaan_software` (`id`, `kuartal`, `tanggal`, `staff_lab`, `laboratorium`, `status_pemeriksaan`) VALUES
-(47, '4', '2024-11-06', 'laboran', 'FTTI2', 'validasi_kalab'),
-(48, '4', '2024-11-06', 'laboran', 'FTTI3', 'diterima'),
-(49, '4', '2024-11-06', 'laboran', 'FTTI4', 'diterima'),
-(50, '4', '2024-11-06', 'aslab', 'FTTI1', 'pengecekan'),
-(51, '4', '2024-11-06', 'aslab', 'FTTI2', 'pengecekan'),
-(52, '4', '2024-11-06', 'aslab', 'FTTI3', 'pengecekan'),
-(53, '4', '2024-11-06', 'aslab', 'FTTI4', 'pengecekan');
+INSERT INTO `pemeriksaan_software` (`id`, `kuartal`, `tanggal`, `staff_lab`, `laboratorium`, `catatan`, `status_pemeriksaan`) VALUES
+(47, '4', '2024-11-06', 'laboran', 'FTTI2', 'ada yang kurang (kalab)', 'revisi'),
+(48, '4', '2024-11-06', 'laboran', 'FTTI3', '', 'diterima'),
+(49, '4', '2024-11-06', 'laboran', 'FTTI4', '', 'diterima'),
+(50, '4', '2024-11-06', 'aslab', 'FTTI1', 'ada yang kurang lagi (dari Laboran)', 'revisi'),
+(51, '4', '2024-11-06', 'aslab', 'FTTI2', '', 'diterima'),
+(52, '4', '2024-11-06', 'aslab', 'FTTI3', 'hmmm (dari Kalab)', 'revisi'),
+(53, '4', '2024-11-06', 'aslab', 'FTTI4', NULL, 'validasi_kalab'),
+(54, '4', '2024-12-25', 'laboran', 'FTTI2', NULL, 'diterima'),
+(55, '4', '2024-12-25', 'laboran', 'FTTI3', NULL, 'diterima'),
+(56, '4', '2024-12-25', 'laboran', 'FTTI4', NULL, 'validasi_laboran'),
+(58, '4', '2024-12-29', 'laboran', 'FTTI2', NULL, 'pengecekan'),
+(59, '4', '2024-12-29', 'laboran', 'FTTI3', NULL, 'pengecekan'),
+(60, '4', '2024-12-29', 'laboran', 'FTTI4', 'aneh (dari Admin)', 'revisi'),
+(62, '1', '2025-01-04', 'superadmin', 'FTTI4', 'ada yang kurang (dari Admin)', 'revisi'),
+(63, '1', '2025-01-04', 'superadmin', 'FTTI4', 'ada yang kurang (dari Admin)', 'revisi');
 
 -- --------------------------------------------------------
 
@@ -2595,6 +3100,8 @@ CREATE TABLE `peminjaman_alat` (
   `jenis_barang` varchar(50) NOT NULL,
   `tanggal_peminjaman` date NOT NULL,
   `tanggal_pengembalian` date NOT NULL,
+  `jam_mulai` char(5) NOT NULL,
+  `jam_selesai` char(5) NOT NULL,
   `catatan` text DEFAULT NULL,
   `filename` varchar(30) NOT NULL,
   `status` enum('pending','validasi_laboran','diterima','ditolak','dikembalikan') NOT NULL DEFAULT 'pending'
@@ -2604,8 +3111,12 @@ CREATE TABLE `peminjaman_alat` (
 -- Dumping data untuk tabel `peminjaman_alat`
 --
 
-INSERT INTO `peminjaman_alat` (`id`, `id_user`, `nama`, `nidn`, `keperluan`, `jenis_barang`, `tanggal_peminjaman`, `tanggal_pengembalian`, `catatan`, `filename`, `status`) VALUES
-(43, '31', 'fadel1234', 'saasx', 'saxsacasc', 'saxasdsad', '2024-11-14', '2024-11-15', NULL, '01JCN41D52VNBSJJ5BHJRFBQZ5.pdf', 'validasi_laboran');
+INSERT INTO `peminjaman_alat` (`id`, `id_user`, `nama`, `nidn`, `keperluan`, `jenis_barang`, `tanggal_peminjaman`, `tanggal_pengembalian`, `jam_mulai`, `jam_selesai`, `catatan`, `filename`, `status`) VALUES
+(44, '31', 'fadel1234', '2003015188', 'skripsi', 'Keyboard', '2024-12-19', '2024-12-19', '', '', 'Foto kurang jelas (dari Laboran)', '01JFCWCY67ZKEVEE5XP3ZDA9SQ.pdf', 'dikembalikan'),
+(45, '31', 'fadel1234', '2003015188', 'Skripsi', 'Mouse', '2024-12-18', '2024-12-18', '01:03', '02:03', NULL, '01JFD4RSD18ZV459RFXJT8N5JP.pdf', 'dikembalikan'),
+(46, '31', 'fadel1234', '2003015188', 'xzvxzcsacas', 'sacnonsaolncsa', '2024-12-25', '2024-12-25', '11:42', '14:42', 'full (dari Laboran)', '01JFXYH7SB8N00GPARGHA0NJRF.pdf', 'ditolak'),
+(47, '31', 'fadel1234', '2003015188', 'sacsaxas', 'sasadsa', '2024-12-25', '2024-12-25', '14:15', '15:15', 'full (dari Kalab)', '01JFYAQTF0Z7V8M42D5XGMXWNS.pdf', 'diterima'),
+(49, '31', 'fadel1234', '2003015188', 'skipsi', 'mouse', '2024-12-31', '2024-12-31', '07:00', '08:00', NULL, '01JGCM82XR756CF5Q35M72CRXY.pdf', 'pending');
 
 -- --------------------------------------------------------
 
@@ -2625,7 +3136,7 @@ CREATE TABLE `peminjaman_ruang` (
   `jam_selesai` char(5) NOT NULL,
   `catatan` text DEFAULT NULL,
   `filename` varchar(30) NOT NULL,
-  `status` enum('pending','validasi_laboran','validasi_kalab','diterima','ditolak','selesai','dipinjam') NOT NULL DEFAULT 'pending'
+  `status` enum('pending','validasi_laboran','validasi_kalab','diterima','ditolak','selesai') NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -2633,8 +3144,11 @@ CREATE TABLE `peminjaman_ruang` (
 --
 
 INSERT INTO `peminjaman_ruang` (`id`, `id_user`, `nama`, `nim`, `keperluan`, `ruang`, `tanggal_peminjaman`, `jam_mulai`, `jam_selesai`, `catatan`, `filename`, `status`) VALUES
-(7, '31', 'fadel1234', '1213123', '2141241', 'FTTI1', '2024-11-07', '17:24', '18:24', '', '', 'ditolak'),
-(8, '31', 'fadel1234', 'wdqwq', 'ssdsasax', 'FTTI2', '2024-11-15', '16:35', '17:35', NULL, '01JCN0EZDF1N1F7XGW3RCERS0E.pdf', 'pending');
+(7, '31', 'fadel1234', '1213123', '2141241', 'FTTI1', '2024-11-07', '17:24', '18:24', 'full (dari Kalab)', '', 'ditolak'),
+(9, '31', 'fadel1234', 'dvsasa', 'saxsa', 'FTTI1', '2024-12-18', '09:14', '10:14', 'full (dari Kalab)', '01JF92WN979GTGSKTRK00WN9JP.pdf', 'ditolak'),
+(10, '31', 'fadel1234', '2003015188', 'mengerjakan skripsi', 'FTTI1', '2024-12-18', '19:47', '20:47', NULL, '01JFCWY49B1ZJ2EHY0P3RNK55Z.pdf', 'validasi_laboran'),
+(11, '31', 'fadel1234', '2003015188', 'Skripsi', 'FTTI2', '2024-12-25', '16:10', '17:10', 'full', '01JFYDX6M95CSP8JA1QXWP2FWS.pdf', 'pending'),
+(13, '31', 'fadel1234', '2003015188', 'Skripsi', 'FTTI1', '2024-12-31', '06:07', '07:07', NULL, '01JGCP9Z05ESKH0NEBC5M9PGY5.pdf', 'diterima');
 
 -- --------------------------------------------------------
 
@@ -2645,20 +3159,30 @@ INSERT INTO `peminjaman_ruang` (`id`, `id_user`, `nama`, `nim`, `keperluan`, `ru
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `email` varchar(160) NOT NULL,
+  `id_user` varchar(10) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(60) NOT NULL,
-  `role` enum('kalab','aslab','laboran','user') NOT NULL DEFAULT 'user'
+  `password` varchar(80) NOT NULL,
+  `role` enum('kalab','aslab','laboran','user','superAdmin') NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`) VALUES
-(31, 'fadel1234@gmail.com', 'fadel1234', '$2a$10$F9JcD8uti2jeSoamwVi9cO5/lAbXFynxGXxO5ExZ579Vmm2AyWpey', 'user'),
-(32, 'laboran@gmail.com', 'laboran', '$2a$10$wuOWEQ/A52y8gYzJBT78YuG/J82e3QEcePGt0KjUzpvfqoX8S9gGG', 'laboran'),
-(33, 'kalab@gmail.com', 'kalab', '$2a$10$B4uFndiKWXeT.vgRP8H/DeesDH7blwVA7TWWL6si4KcUnQ7JVqh.q', 'kalab'),
-(34, 'aslab@gmail.com', 'aslab', '$2a$10$fGKXK3Ogb5inFh631BuTV.cAPlPExws0WrpNHpS3rak11ZT5Dr3.G', 'aslab');
+INSERT INTO `user` (`id`, `email`, `id_user`, `username`, `password`, `role`) VALUES
+(31, 'fadel1234@gmail.com', '2003015188', 'fadel1234', '$2a$10$F9JcD8uti2jeSoamwVi9cO5/lAbXFynxGXxO5ExZ579Vmm2AyWpey', 'user'),
+(32, 'laboran@gmail.com', '', 'laboran', '$2a$10$wuOWEQ/A52y8gYzJBT78YuG/J82e3QEcePGt0KjUzpvfqoX8S9gGG', 'laboran'),
+(33, 'kalab@gmail.com', '', 'kalab', '$2a$10$B4uFndiKWXeT.vgRP8H/DeesDH7blwVA7TWWL6si4KcUnQ7JVqh.q', 'kalab'),
+(34, 'aslab@gmail.com', '', 'aslab', '$2a$10$fGKXK3Ogb5inFh631BuTV.cAPlPExws0WrpNHpS3rak11ZT5Dr3.G', 'aslab'),
+(37, 'fadelmaulana12@gmail.com', '2003015188', 'fadel maulana', '$2a$10$JC8Q9zpCkSoskjiQ6eD3MuFoqY3khimBWrcHenM0IT9h.h.OqLJkK', 'user'),
+(38, 'fadelmaulana123@gmail.com', '2003015189', 'fadel maulana', '$2a$10$IaoXELy3buI/KkFgqxi16eAOFxsVxxgq.4DPkMUIDRSOGXk9lymnm', 'user'),
+(39, 'fadel123@gmail.com', '2003015182', 'fadel', '$2a$10$JQ/DD0Xc0PqfPs70CM1ybuFEXXMswyJwDUou8TfyqrJX83O8PruJK', 'user'),
+(40, 'superadmin@gmail.com', '12345', 'superadmin', '$2a$10$AdElqXTGOGRxfP.IL.riyOXBOVLG0SV7imMsln5qIU8PTyFznpYxq', 'superAdmin'),
+(41, '', '', '', '$2a$10$BW3SqEIQSu9FYX13xCCmDemOw0WHHzlTA.iGOrjHCC5nkrxgsAFXS', ''),
+(42, '', '', '', '$2a$10$.LhxwnBR2vNn0CeMP3fvP.u9wpNMygzSfJuMDq7CKOwMFpBDTzxGO', ''),
+(43, '', '', '', '$2a$10$b9dgaO2W0r.gXhbDz36r.uHNTVeaxTPU9RuMskWNkXDE3JP93QEQO', ''),
+(44, '', '', '', '$2a$10$SW7yPO3mcxp1GOdYNRjJI.lmAQNDHuRym3d4fddENI71t.sW0ajh2', ''),
+(45, 'user1@gmail.com', '2003015183', 'user1', '$2a$10$frD9nyo0JeWPsGQf3RTVL.egT9g87EQu72ssBwwCUGfj11zKWCFz2', 'user');
 
 --
 -- Indexes for dumped tables
@@ -2780,109 +3304,109 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `detail_pemeriksaan_hardware_ftti1`
 --
 ALTER TABLE `detail_pemeriksaan_hardware_ftti1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2016;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2222;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_pemeriksaan_hardware_ftti2`
 --
 ALTER TABLE `detail_pemeriksaan_hardware_ftti2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=931;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1031;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_pemeriksaan_hardware_ftti3`
 --
 ALTER TABLE `detail_pemeriksaan_hardware_ftti3`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=438;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=563;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_pemeriksaan_hardware_ftti4`
 --
 ALTER TABLE `detail_pemeriksaan_hardware_ftti4`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=342;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=406;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_pemeriksaan_software_ftti1`
 --
 ALTER TABLE `detail_pemeriksaan_software_ftti1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=621;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=705;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_pemeriksaan_software_ftti2`
 --
 ALTER TABLE `detail_pemeriksaan_software_ftti2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=368;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=436;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_pemeriksaan_software_ftti3`
 --
 ALTER TABLE `detail_pemeriksaan_software_ftti3`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=283;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=408;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_pemeriksaan_software_ftti4`
 --
 ALTER TABLE `detail_pemeriksaan_software_ftti4`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=216;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=322;
 
 --
 -- AUTO_INCREMENT untuk tabel `inventaris_ftti1`
 --
 ALTER TABLE `inventaris_ftti1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=262;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=264;
 
 --
 -- AUTO_INCREMENT untuk tabel `inventaris_ftti2`
 --
 ALTER TABLE `inventaris_ftti2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- AUTO_INCREMENT untuk tabel `inventaris_ftti3`
 --
 ALTER TABLE `inventaris_ftti3`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 
 --
 -- AUTO_INCREMENT untuk tabel `inventaris_ftti4`
 --
 ALTER TABLE `inventaris_ftti4`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT untuk tabel `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT untuk tabel `pemeriksaan_hardware`
 --
 ALTER TABLE `pemeriksaan_hardware`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT untuk tabel `pemeriksaan_software`
 --
 ALTER TABLE `pemeriksaan_software`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT untuk tabel `peminjaman_alat`
 --
 ALTER TABLE `peminjaman_alat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT untuk tabel `peminjaman_ruang`
 --
 ALTER TABLE `peminjaman_ruang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
