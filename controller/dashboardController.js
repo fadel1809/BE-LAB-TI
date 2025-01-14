@@ -129,7 +129,7 @@ export const dashboardKalab = async (req,res) => {
       const [jumlahAkun] = await connection.query({
         sql: queryJumlahAkun,
       });
-      connection.release()
+
       const data = {
         validasiKalabCount: validasiKalabCount[0],
         softwareValidasiKalabCount:softwareValidasiKalabCount[0],
