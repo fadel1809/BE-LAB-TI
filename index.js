@@ -9,7 +9,12 @@ import helmet from "helmet";
 import path from "path";
 import { fileURLToPath } from "url";
 app.use(helmet())
-app.use(cors({ credentials: true, origin: process.env.NODE_ENV === "development" ? process.env.LOCAL_URL : process.env.DOMAIN_URL }));
+app.use(cors({
+    origin: process.env.NODE_ENV === "development" ? process.env.LOCAL_URL : process.env.DOMAIN_URL,
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(cookieParser());
 app.options(
   "*",
