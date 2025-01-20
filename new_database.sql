@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Jan 2025 pada 14.59
+-- Waktu pembuatan: 20 Jan 2025 pada 14.46
 -- Versi server: 11.4.3-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -3026,7 +3026,7 @@ CREATE TABLE `pemeriksaan_hardware` (
   `tanggal` date NOT NULL,
   `staff_lab` varchar(50) NOT NULL,
   `laboratorium` enum('FTTI1','FTTI2','FTTI3','FTTI4') NOT NULL,
-  `catatan` text NOT NULL,
+  `catatan` text DEFAULT NULL,
   `status_pemeriksaan` enum('pengecekan','validasi_laboran','validasi_kalab','revisi','diterima') DEFAULT 'pengecekan'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -3116,7 +3116,9 @@ INSERT INTO `peminjaman_alat` (`id`, `id_user`, `nama`, `nidn`, `keperluan`, `je
 (45, '31', 'fadel1234', '2003015188', 'Skripsi', 'Mouse', '2024-12-18', '2024-12-18', '01:03', '02:03', NULL, '01JFD4RSD18ZV459RFXJT8N5JP.pdf', 'dikembalikan'),
 (46, '31', 'fadel1234', '2003015188', 'xzvxzcsacas', 'sacnonsaolncsa', '2024-12-25', '2024-12-25', '11:42', '14:42', 'full (dari Laboran)', '01JFXYH7SB8N00GPARGHA0NJRF.pdf', 'ditolak'),
 (47, '31', 'fadel1234', '2003015188', 'sacsaxas', 'sasadsa', '2024-12-25', '2024-12-25', '14:15', '15:15', 'full (dari Kalab)', '01JFYAQTF0Z7V8M42D5XGMXWNS.pdf', 'diterima'),
-(49, '31', 'fadel1234', '2003015188', 'skipsi', 'mouse', '2024-12-31', '2024-12-31', '07:00', '08:00', NULL, '01JGCM82XR756CF5Q35M72CRXY.pdf', 'pending');
+(49, '31', 'fadel1234', '2003015188', 'skipsi', 'mouse', '2024-12-31', '2024-12-31', '07:00', '08:00', NULL, '01JGCM82XR756CF5Q35M72CRXY.pdf', 'pending'),
+(51, '31', 'fadel1234', '2003015188', 'saxasax', 'Keyboard', '2025-01-17', '2025-01-17', '16:18', '17:18', NULL, '01JHQ6GA5Z2VVRSZESE7RY37RV.pdf', 'pending'),
+(52, '45', 'user1', '2003015183', 'asfdsadas', 'Keyboard', '2025-01-19', '2025-01-19', '15:39', '16:39', NULL, '01JHW5N1GN5S78RVSYTSEKKFCW.pdf', 'pending');
 
 -- --------------------------------------------------------
 
@@ -3148,7 +3150,8 @@ INSERT INTO `peminjaman_ruang` (`id`, `id_user`, `nama`, `nim`, `keperluan`, `ru
 (9, '31', 'fadel1234', 'dvsasa', 'saxsa', 'FTTI1', '2024-12-18', '09:14', '10:14', 'full (dari Kalab)', '01JF92WN979GTGSKTRK00WN9JP.pdf', 'ditolak'),
 (10, '31', 'fadel1234', '2003015188', 'mengerjakan skripsi', 'FTTI1', '2024-12-18', '19:47', '20:47', NULL, '01JFCWY49B1ZJ2EHY0P3RNK55Z.pdf', 'validasi_laboran'),
 (11, '31', 'fadel1234', '2003015188', 'Skripsi', 'FTTI2', '2024-12-25', '16:10', '17:10', 'full', '01JFYDX6M95CSP8JA1QXWP2FWS.pdf', 'pending'),
-(13, '31', 'fadel1234', '2003015188', 'Skripsi', 'FTTI1', '2024-12-31', '06:07', '07:07', NULL, '01JGCP9Z05ESKH0NEBC5M9PGY5.pdf', 'diterima');
+(13, '31', 'fadel1234', '2003015188', 'Skripsi', 'FTTI1', '2024-12-31', '06:07', '07:07', NULL, '01JGCP9Z05ESKH0NEBC5M9PGY5.pdf', 'diterima'),
+(14, '31', 'fadel1234', '2003015188', 'Ujian', 'FTTI2', '2025-01-17', '17:44', '18:44', NULL, '01JHQ80GX4WMW89FAJD4269EQ0.pdf', 'pending');
 
 -- --------------------------------------------------------
 
@@ -3394,13 +3397,13 @@ ALTER TABLE `pemeriksaan_software`
 -- AUTO_INCREMENT untuk tabel `peminjaman_alat`
 --
 ALTER TABLE `peminjaman_alat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT untuk tabel `peminjaman_ruang`
 --
 ALTER TABLE `peminjaman_ruang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
